@@ -56,6 +56,8 @@ winget install -e --id XPDP273C0XHQH2 #Acrobat
 winget install -e --id Adobe.DNGConverter # DNG Converter
 # Blender
 #winget install -e --id BlenderFoundation.Blender # Blender
+# Google.WebDesigner
+#winget install -e --id Google.WebDesigner # Google WebDesigner
 # HexChat
 winget install -e --id HexChat.HexChat # HexChat
 # Git
@@ -129,7 +131,4 @@ winget install -e --id VMware.WorkstationPlayer # VMware Player
 # RDP
 winget install -e --id Microsoft.RemoteDesktopClient # RDP
 #-------------------------------------------------------
-
-winget install -e --id Google.WebDesigner
-
 winget upgrade --all --include-unknown
