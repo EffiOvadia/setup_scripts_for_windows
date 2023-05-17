@@ -17,7 +17,7 @@ winget install -e --id Google.Chrome.Canary #Chrome Canary
 # Thunderbird
 winget install -e --id Mozilla.Thunderbird #Thunderbird
 # BetterBird
-winget install -e --id Betterbird #Betterbird
+winget install -e --id Betterbird.Betterbird #Betterbird
 # Zoho Mail
 #winget install -e --id Zoho.ZohoMail.Desktop
 # Foxmail
