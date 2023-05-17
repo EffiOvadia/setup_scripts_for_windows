@@ -1,0 +1,17 @@
+dism /online /add-package /packagepath:"C:\Windows\servicing\packages\Microsoft-OneCore-Connectivity-Bluetooth-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum"
+dism /online /add-package /packagepath:"C:\Windows\servicing\packages\Microsoft-OneCore-Connectivity-Bluetooth-onecore-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum"
+dism /online /add-package /packagepath:"C:\Windows\servicing\packages\Microsoft-OneCore-Connectivity-Bluetooth-drivers-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum"
+
+dism /online /add-package /packagepath:"C:\Windows\servicing\packages\Microsoft-OneCore-Connectivity-Bluetooth-WOW64-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum"
+dism /online /add-package /packagepath:"C:\Windows\servicing\packages\Microsoft-OneCore-Connectivity-Bluetooth-WOW64-onecore-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum"
+dism /online /add-package /packagepath:"C:\Windows\servicing\packages\Microsoft-OneCore-Connectivity-Bluetooth-WOW64-drivers-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum"
+
+dism /online /add-package /packagepath:"C:\Windows\servicing\packages\Microsoft-OneCore-Connectivity-Bluetooth-onecoreuap-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum"
+dism /online /add-package /packagepath:"C:\Windows\servicing\packages\Microsoft-OneCore-SystemSettings-Bluetooth-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum"
+
+
+bcdedit /set TESTSIGNING ON
+
+REM bcdedit /set TESTSIGNING OFF
+
+wmic os where Primary='TRUE' reboot
