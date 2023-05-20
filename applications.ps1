@@ -6,10 +6,14 @@ winget install -e --id XPFFTQ037JWMHS #Edge
 winget install -e --id Google.Chrome #Chrome
 # Firefox 
 winget install -e --id 9NZVDKPMR9RD #Firefox
+# LibreWolf
+winget install -e --id LibreWolf.LibreWolf # LibreWolf
 # Brave Browser
 winget install -e --id XP8C9QZMS2PC1T #Brave
+#winget install -e --id Brave.Brave
 # Vivaldi Browser
 winget install -e --id XP99GVQDX7JPR4 #Vivaldi
+#winget install -e --id VivaldiTechnologies.Vivaldi #Vivaldi
 # Waterfox
 winget install -e --id Waterfox.Waterfox #Waterfox
 # Google Chrome Canary 
@@ -18,6 +22,12 @@ winget install -e --id Google.Chrome.Canary #Chrome Canary
 winget install -e --id Mozilla.Thunderbird #Thunderbird
 # BetterBird
 winget install -e --id Betterbird.Betterbird #Betterbird
+# Tor Browser
+winget install -e --id TorProject.TorBrowser ## Tor 
+# Yandex
+#winget install -e --id Yandex.Browser # Yandex
+# K-Meleon
+#winget install -e --id kmeleonbrowser.K-Meleon
 # Zoho Mail
 #winget install -e --id Zoho.ZohoMail.Desktop
 # Foxmail
@@ -52,6 +62,8 @@ winget install -e --id Google.Drive #Google Drive
 #-------------------------------------------------------
 # Adobe Acrobat
 winget install -e --id XPDP273C0XHQH2 #Acrobat
+# Adobe Brackets
+winget install -e --id Adobe.Brackets # Brackets
 # DNG Converter
 winget install -e --id Adobe.DNGConverter # DNG Converter
 # Blender
