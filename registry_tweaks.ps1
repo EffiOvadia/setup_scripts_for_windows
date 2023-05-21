@@ -27,6 +27,9 @@ Set-ItemProperty -Path ".\Explorer\Advanced" LaunchTo -Force -Value 1
 Set-ItemProperty -Path ".\Explorer\Advanced" ShowSecondsInSystemClock -Force -Value 1
 Pop-Location
 
+
+
+
 Push-Location -path "HKLM:\SOFTWARE\Policies\Microsoft"
 if ( -not(Test-Path ".\Psched\") ) { New-Item -Path ".\Psched\" }
 Set-ItemProperty -Path ".\Psched" NonBestEffortLimit -Force -Value 0
@@ -83,3 +86,9 @@ Pop-Location
 # Setting Envirnomet variable from command line
 #[System.Environment]::SetEnvironmentVariable('GoHugo','C:\Hugo\bin',[System.EnvironmentVariableTarget]::User)
 #[System.Environment]::SetEnvironmentVariable('GoHugo','C:\Hugo\bin',[System.EnvironmentVariableTarget]::Machine)
+
+# Disbale Bing Search in Windows 11
+Push-Location -path "HKCU:\Software\Policies\Microsoft\Windows"
+if ( -not(Test-Path ".\Explorer\") ) { New-Item -Path ".\Explorer\" }
+Set-ItemProperty -Path ".\Explorer" DisableSearchBoxSuggestions -Force -Value 1
+Pop-Location
