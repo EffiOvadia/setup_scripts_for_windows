@@ -1,146 +1,146 @@
-# Opera
+#! Opera
 winget install -e --id Opera.Opera #Opera
-# Edge Browser
+#! Edge Browser
 winget install -e --id XPFFTQ037JWMHS #Edge
-# Google Chrome
+#! Google Chrome
 winget install -e --id Google.Chrome #Chrome
-# Firefox 
+#! Firefox 
 winget install -e --id 9NZVDKPMR9RD #Firefox
-# LibreWolf
+#! LibreWolf
 winget install -e --id LibreWolf.LibreWolf # LibreWolf
-# Brave Browser
+#! Brave Browser
 winget install -e --id XP8C9QZMS2PC1T #Brave
 #winget install -e --id Brave.Brave
-# Vivaldi Browser
+#! Vivaldi Browser
 winget install -e --id XP99GVQDX7JPR4 #Vivaldi
 #winget install -e --id VivaldiTechnologies.Vivaldi #Vivaldi
-# Waterfox
+#! Waterfox
 winget install -e --id Waterfox.Waterfox #Waterfox
-# Google Chrome Canary 
+#! Google Chrome Canary 
 winget install -e --id Google.Chrome.Canary #Chrome Canary
-# Thunderbird
+#! Thunderbird
 winget install -e --id Mozilla.Thunderbird #Thunderbird
-# BetterBird
+#! BetterBird
 winget install -e --id Betterbird.Betterbird #Betterbird
-# Tor Browser
+#! Tor Browser
 winget install -e --id TorProject.TorBrowser ## Tor 
-# Yandex
+#! Yandex
 #winget install -e --id Yandex.Browser # Yandex
-# K-Meleon
+#! K-Meleon
 #winget install -e --id kmeleonbrowser.K-Meleon
-# Zoho Mail
+#! Zoho Mail
 #winget install -e --id Zoho.ZohoMail.Desktop
-# Foxmail
+#! Foxmail
 #winget install -e --id Tencent.Foxmail
 #-------------------------------------------------------
-# Skype
+#! Skype
 winget install -e --id 9WZDNCRFJ364 #Skype
-# WhatsApp
+#! WhatsApp
 winget install -e --id 9NKSQGP7F2NH #WhatsApp
-# WeChat
+#! WeChat
 winget install -e --id XPFCKBRNFZQ62G #WeChat
-# Signal 
+#! Signal 
 winget install -e --id OpenWhisperSystems.Signal #Signal
-# Discord
+#! Discord
 winget install -e --id XPDC2RH70K22MN #Discord
-# Teams 
+#! Teams 
 winget install -e --id Microsoft.Teams #Teams
-# Zoom
+#! Zoom
 winget install -e --id XP99J3KP4XZ4VV #Zoom
 #-------------------------------------------------------
-# Twitter
+#! Twitter
 winget install -e --id 9E2F88E3.TWITTER_wgeqdkkx372wm #Twitter
-# Facebook
+#! Facebook
 winget install -e --id FACEBOOK.FACEBOOK_8xx8rvfyw5nnt #Facebook
 #-------------------------------------------------------
-# Dropbox 
+#! Dropbox 
 winget install -e --id Dropbox.Dropbox #Dropbox
-# OneDrive
+#! OneDrive
 winget install -e --id Microsoft.OneDrive #OneDrive
-# Goolge Drive
+#! Goolge Drive
 winget install -e --id Google.Drive #Google Drive
 #-------------------------------------------------------
-# Adobe Acrobat
+#! Adobe Acrobat
 winget install -e --id XPDP273C0XHQH2 #Acrobat
-# Adobe Brackets
+#! Adobe Brackets
 winget install -e --id Adobe.Brackets # Brackets
-# DNG Converter
+#! DNG Converter
 winget install -e --id Adobe.DNGConverter # DNG Converter
-# Blender
+#! Blender
 #winget install -e --id BlenderFoundation.Blender # Blender
-# Google.WebDesigner
+#! Google.WebDesigner
 #winget install -e --id Google.WebDesigner # Google WebDesigner
-# HexChat
+#! HexChat
 winget install -e --id HexChat.HexChat # HexChat
-# Git
+#! Git
 winget install -e --id Git.Git #Git 
-# Translator
+#! Translator
 winget install -e --id Microsoft.BingTranslator_8wekyb3d8bbwe
-# PowerToys
+#! PowerToys
 winget install -e --id XP89DCGQ3K6VLD #PowerToys
-# LibreOffice
+#! LibreOffice
 winget install -e --id TheDocumentFoundation.LibreOffice #LibreOffice
-# Teamviewer
+#! Teamviewer
 winget install -e --id TeamViewer.TeamViewer #TeamViewer
-# VSCode
+#! VSCode
 winget install -e --id Microsoft.VisualStudioCode #VSCode
-# VIM
+#! VIM
 winget install -e --id XPFFTQ037JWMHS #VIM
-# WinSCP
+#! WinSCP
 winget install -e --id WinSCP.WinSCP # WinSCP
-# PuTTY
+#! PuTTY
 winget install -e --id XPFNZKSKLBP7RJ #PuTTY
-# Python
+#! Python
 winget install -e --id Python.Python.3.11
-# qBittorrent
+#! qBittorrent
 winget install -e --id qBittorrent.qBittorrent #qBittorrent
-# 7-Zip
+#! 7-Zip
 winget install -e --id 7zip.7zip --accept-source-agreements --accept-package-agreements
-# Reddit
+#! Reddit
 winget install -e --id 9NCFHPQ558DN --accept-source-agreements --accept-package-agreements
-# FarManager
+#! FarManager
 winget install -e --id FarManager.FarManager
-# Keepass
+#! Keepass
 winget install -e --id DominikReichl.KeePass
 #-------------------------------------------------------
-# Cygwin
+#! Cygwin
 winget install -e --id Cygwin.Cygwin #Cygwin
-# Ubuntu 20.04 LTS
+#! Ubuntu 20.04 LTS
 winget install -e --id Canonical.Ubuntu.2204
-# Ubuntu 20.04 LTS
+#! Ubuntu 20.04 LTS
 winget install -e --id Canonical.Ubuntu.2004
-# Kali Linux
+#! Kali Linux
 winget install -e --id kalilinux.kalilinux
-# Debian
+#! Debian
 winget install -e --id Debian.Debian
 #-------------------------------------------------------
-# Clipchamp
+#! Clipchamp
 winget install -e --id Clipchamp.Clipchamp_yxz26nhyzhsrt
-# Inkscape
+#! Inkscape
 winget install -e --id 9PD9BHGLFC7H #Inkscape
-# Gimp
+#! Gimp
 winget install -e --id XPDM27W10192Q0 # Gimp
-# VLC
+#! VLC
 winget install -e --id XPDM1ZW6815MQM #VLC
 #-------------------------------------------------------
-# OpenVPN 
+#! OpenVPN 
 winget install -e --id OpenVPNTechnologies.OpenVPN # OpenVPN
-# ExpressVPN
+#! ExpressVPN
 winget install -e --id ExpressVPN.ExpressVPN # ExpressVPN
-# MullvadVPN
+#! MullvadVPN
 winget install -e --id MullvadVPN.MullvadVPN # MullvadVPN
-# ProtonVPN
+#! ProtonVPN
 winget install -e --id ProtonTechnologies.ProtonVPN
-# Wireshark
+#! Wireshark
 winget install -e --id WiresharkFoundation.Wireshark # Wireshark
 #-------------------------------------------------------
-# VirtualBox
+#! VirtualBox
 winget install -e --id Oracle.VirtualBox
-# VMware Workstation Pro
+#! VMware Workstation Pro
 winget install -e --id VMware.WorkstationPro # VMware Workstation
-# VMware Workstation Player
+#! VMware Workstation Player
 winget install -e --id VMware.WorkstationPlayer # VMware Player
-# RDP
+#! RDP
 winget install -e --id Microsoft.RemoteDesktopClient # RDP
 #-------------------------------------------------------
 winget upgrade --all --include-unknown
