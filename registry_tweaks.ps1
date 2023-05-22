@@ -27,14 +27,10 @@ Set-ItemProperty -Path ".\Explorer\Advanced" LaunchTo -Force -Value 1
 Set-ItemProperty -Path ".\Explorer\Advanced" ShowSecondsInSystemClock -Force -Value 1
 Pop-Location
 
-
-
-
 Push-Location -path "HKLM:\SOFTWARE\Policies\Microsoft"
 if ( -not(Test-Path ".\Psched\") ) { New-Item -Path ".\Psched\" }
 Set-ItemProperty -Path ".\Psched" NonBestEffortLimit -Force -Value 0
 Pop-Location
-
 
 Push-Location -path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer"
 #! On Toggle the comment and the computer name on mapped network drive drives 
@@ -56,7 +52,6 @@ Set-ItemProperty -Path ".\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f597138546
 #! Hide Folder VIDEOS From This PC
 Set-ItemProperty -Path ".\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" ThisPCPolicy -Force -Value Hide
 #! Hide 3D Objects from This PC
-#Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" ThisPCPolicy -Force -Value Hide
 if ( Test-Path ".\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" ) 
 { Remove-Item ".\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" }
 Pop-Location
@@ -67,26 +62,20 @@ Pop-Location
 #Pop-Location
 
 #! ### create a pseudo folder that act as advanced control panel
-#! mkdir "%userprofile%\Desktop\Administration.{ED7BA470-8E54-465E-825C-99712043E01C}"
-#! mkdir "%userprofile%\Desktop\AllShortcuts.{4234d49b-0245-4df3-b780-3893943456e1}"
+#new-item -ItemType Directory "$env:userprofile\Desktop\Administration.{ED7BA470-8E54-465E-825C-99712043E01C}"
+#new-item -ItemType Directory "$env:userprofile\Desktop\AllShortcuts.{4234d49b-0245-4df3-b780-3893943456e1}"
+
 New-PSDrive -PSProvider Registry -Name HKU -Root HKEY_USERS
 Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard\" InitialKeyboardIndicators -Force -Value 2
 
-
 #! Change Print Screen Key to start snipping tool
-Push-Location -Path "HKCU:\Control Panel\Keyboard"
-Set-ItemProperty -Path . PrintScreenKeyForSnippingEnabled -Force -Value 1
-Pop-Location
+Set-ItemProperty -Path "HKCU:\Control Panel\Keyboard" PrintScreenKeyForSnippingEnabled -Force -Value 1
 
 #! Set DELL brand in registry (for DELL laptops only)
 #Push-Location -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Store"
 #Set-ItemProperty -Path . OEMID -Force -Value DELL
 #Set-ItemProperty -Path . StoreContentModifier -Force -Value DELL_XPS
 #Pop-Location
-
-# Setting Envirnomet variable from command line
-#[System.Environment]::SetEnvironmentVariable('GoHugo','C:\Hugo\bin',[System.EnvironmentVariableTarget]::User)
-#[System.Environment]::SetEnvironmentVariable('GoHugo','C:\Hugo\bin',[System.EnvironmentVariableTarget]::Machine)
 
 # Disbale Bing Search in Windows 11
 Push-Location -path "HKCU:\Software\Policies\Microsoft\Windows"
