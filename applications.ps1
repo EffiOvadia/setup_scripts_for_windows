@@ -1,29 +1,50 @@
-#! Opera
-winget install -e --id Opera.Opera #Opera
+#! set wsl default version to 2
+wsl --set-default-version 2
+#! update wsl subsystem
+wsl --update
+#! list all available distro in MS store
+wsl --list --online 
+#! install ubuntu distro (NO LTS)
+wsl --install --distribution Ubuntu
+#! install deb ian distro 
+wsl --install --distribution Debian
+#! install kali-linux
+wsl --install --distribution kali-linux
+#! install ubuntu 20.04 LTS
+wsl --install --distribution Ubuntu-20.04
+#! install ubuntu 22.04 LTS
+wsl --install --distribution Ubuntu-22.04
+#! install Oracle Linux 9.1
+wsl --install --distribution OracleLinux_9_1
+#! list all installed distro on local machine
+wsl --list --verbose
+#! Cygwin
+winget install -e --id Cygwin.Cygwin #Cygwin
+#-------------------------------------------------------
+#! Brave Browser
+winget install -e --id Brave.Brave #Brave
 #! Edge Browser
 winget install -e --id XPFFTQ037JWMHS #Edge
-#! Google Chrome
-winget install -e --id Google.Chrome #Chrome
 #! Firefox 
-winget install -e --id 9NZVDKPMR9RD #Firefox
-#! LibreWolf
-winget install -e --id LibreWolf.LibreWolf # LibreWolf
-#! Brave Browser
-winget install -e --id XP8C9QZMS2PC1T #Brave
-#winget install -e --id Brave.Brave
+winget install -e --id Mozilla.Firefox #Firefox
+#! Tor Browser
+winget install -e --id TorProject.TorBrowser #Tor 
+#! Google Chrome
+winget install -e --id Google.Chrome #Google Chrome
+#! Google Chrome Canary 
+winget install -e --id Google.Chrome.Canary #Google Chrome Canary
 #! Vivaldi Browser
-winget install -e --id XP99GVQDX7JPR4 #Vivaldi
-#winget install -e --id VivaldiTechnologies.Vivaldi #Vivaldi
+winget install -e --id VivaldiTechnologies.Vivaldi #Vivaldi
 #! Waterfox
 winget install -e --id Waterfox.Waterfox #Waterfox
-#! Google Chrome Canary 
-winget install -e --id Google.Chrome.Canary #Chrome Canary
+#! Opera
+winget install -e --id Opera.Opera #Opera
 #! Thunderbird
 winget install -e --id Mozilla.Thunderbird #Thunderbird
 #! BetterBird
 winget install -e --id Betterbird.Betterbird #Betterbird
-#! Tor Browser
-winget install -e --id TorProject.TorBrowser ## Tor 
+#! LibreWolf
+#winget install -e --id LibreWolf.LibreWolf # LibreWolf
 #! Yandex
 #winget install -e --id Yandex.Browser # Yandex
 #! K-Meleon
@@ -102,17 +123,6 @@ winget install -e --id 9NCFHPQ558DN --accept-source-agreements --accept-package-
 winget install -e --id FarManager.FarManager
 #! Keepass
 winget install -e --id DominikReichl.KeePass
-#-------------------------------------------------------
-#! Cygwin
-winget install -e --id Cygwin.Cygwin #Cygwin
-#! Ubuntu 20.04 LTS
-winget install -e --id Canonical.Ubuntu.2204
-#! Ubuntu 20.04 LTS
-winget install -e --id Canonical.Ubuntu.2004
-#! Kali Linux
-winget install -e --id kalilinux.kalilinux
-#! Debian
-winget install -e --id Debian.Debian
 #-------------------------------------------------------
 #! Clipchamp
 winget install -e --id Clipchamp.Clipchamp_yxz26nhyzhsrt
