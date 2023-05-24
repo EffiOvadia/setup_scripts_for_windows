@@ -1,11 +1,12 @@
 #------- WSL -------------------------------------------
-### Enable/Install Linux Subsystem feature
+
+#! Enable/Install Linux Subsystem feature
 if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
 { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
-### Add windows capability: OpenSSH Client
+#! Add windows capability: OpenSSH Client
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
 { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
-### Add windows capability: OpenSSH Server
+#!Add windows capability: OpenSSH Server
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed" )
 { Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 }
 #! set wsl default version to 2
@@ -14,159 +15,124 @@ wsl --set-default-version 2
 wsl --update
 #! list all available distro in MS store
 wsl --list --online 
-#! install ubuntu distro (NO LTS)
-wsl --install --distribution Ubuntu
-#! install debian distro 
-wsl --install --distribution Debian
-#! install kali-linux
-wsl --install --distribution kali-linux
-#! install ubuntu 22.04 LTS
-wsl --install --distribution Ubuntu-22.04
-#! install Oracle Linux 9.1
-wsl --install --distribution OracleLinux_9_1
-#! list all installed distro on local machine
-wsl --list --verbose
+
+$Distros = @(
+  [pscustomobject]@{Name='Ubuntu'; ID='Ubuntu'}
+  [pscustomobject]@{Name='Debian'; ID='Debian'}
+  [pscustomobject]@{Name='Kali Linux'; ID='kali-linux'}
+  [pscustomobject]@{Name='Ubuntu 22.04 LTS'; ID='Ubuntu-22.04'}
+  [pscustomobject]@{Name='OracleLinux 9.1'; ID='OracleLinux_9_1'}
+)
+
+foreach ($Dist in $Distros) { wsl --list --verbose $Dist.ID }
+
 #----- Development -------------------------------------
-#! Windows Terminal
-winget install -e --id Microsoft.WindowsTerminal #Windows Terminal
-#! VSCode
-winget install -e --id Microsoft.VisualStudioCode #VSCode
-#! Python
-winget install -e --id Python.Python.3.11 #Python
-#! Cygwin
-winget install -e --id Cygwin.Cygwin #Cygwin
-#! VIM
-winget install -e --id XPFFTQ037JWMHS #VIM
-#! Git
-winget install -e --id Git.Git #Git
-#-------- Browsers & eMail Client ----------------------
-#! Brave Browser
-winget install -e --id Brave.Brave #Brave
-#! Edge Browser
-winget install -e --id XPFFTQ037JWMHS #Edge
-#! Firefox 
-winget install -e --id Mozilla.Firefox #Firefox
-#! Tor Browser
-winget install -e --id TorProject.TorBrowser #Tor 
-#! Google Chrome
-winget install -e --id Google.Chrome #Google Chrome
-#! Google Chrome Canary 
-winget install -e --id Google.Chrome.Canary #Google Chrome Canary
-#! Vivaldi Browser
-winget install -e --id VivaldiTechnologies.Vivaldi #Vivaldi
-#! Waterfox
-winget install -e --id Waterfox.Waterfox #Waterfox
-#! Opera
-winget install -e --id Opera.Opera #Opera
-#! Thunderbird
-winget install -e --id Mozilla.Thunderbird #Thunderbird
-#! BetterBird
-winget install -e --id Betterbird.Betterbird #Betterbird
-#! LibreWolf
-#winget install -e --id LibreWolf.LibreWolf # LibreWolf
-#! Yandex
-#winget install -e --id Yandex.Browser # Yandex
-#! K-Meleon
-#winget install -e --id kmeleonbrowser.K-Meleon
-#! Zoho Mail
-#winget install -e --id Zoho.ZohoMail.Desktop
-#! Foxmail
-#winget install -e --id Tencent.Foxmail
-#------------ Communications ---------------------------
-#! Skype
-winget install -e --id Microsoft.Skype #Skype
-#! Discord
-winget install -e --id Discord.Discord #Discord
-#! WhatsApp
-winget install -e --id WhatsApp.WhatsApp #WhatsApp
-#! Telegram
-winget install -e --id Telegram.TelegramDesktop #Telegram
-#! Signal 
-winget install -e --id OpenWhisperSystems.Signal #Signal
-#! HexChat
-winget install -e --id HexChat.HexChat # HexChat
-#! Teams 
-winget install -e --id Microsoft.Teams #Teams
-#! WeChat
-winget install -e --id Tencent.WeChat #WeChat
-#! LINE
-winget install -e --id LINE.LINE #LINE
-#! Zoom
-winget install -e --id Zoom.Zoom #Zoom
-#-------------------------------------------------------
-#! Twitter
-winget install -e --id 9E2F88E3.TWITTER_wgeqdkkx372wm #Twitter
-#! Facebook
-winget install -e --id FACEBOOK.FACEBOOK_8xx8rvfyw5nnt #Facebook
-#! Reddit
-#winget install -e --id 9NCFHPQ558DN #Reddit
-#-------------------------------------------------------
-#! Dropbox 
-winget install -e --id Dropbox.Dropbox #Dropbox
-#! OneDrive
-winget install -e --id Microsoft.OneDrive #OneDrive
-#! Goolge Drive
-winget install -e --id Google.Drive #Google Drive
-#-------------------------------------------------------
-#! Adobe Acrobat
-winget install -e --id Adobe.Acrobat.Reader.64-bit #Acrobat
-#! DNG Converter
-winget install -e --id Adobe.DNGConverter # DNG Converter
-#! Adobe Brackets
-winget install -e --id Adobe.Brackets # Brackets
-#! Inkscape
-winget install -e --id 9PD9BHGLFC7H #Inkscape
-#! Gimp
-winget install -e --id XPDM27W10192Q0 # Gimp
-#! VLC
-winget install -e --id XPDM1ZW6815MQM #VLC
-#! 7-Zip
-winget install -e --id 7zip.7zip #7zip
-#! PuTTY
-winget install -e --id PuTTY.PuTTY #PuTTY
-#! WinSCP
-winget install -e --id WinSCP.WinSCP # WinSCP
-#! PowerToys
-winget install -e --id XP89DCGQ3K6VLD #PowerToys
-#! FarManager
-winget install -e --id FarManager.FarManager #FAR
-#! Keepass
-winget install -e --id DominikReichl.KeePass #KeePass
-#! Teamviewer
-winget install -e --id TeamViewer.TeamViewer #TeamViewer
-#! RDP
-winget install -e --id Microsoft.RemoteDesktopClient # RDP
-#! qBittorrent
-winget install -e --id qBittorrent.qBittorrent #qBittorrent
-#! LibreOffice
-winget install -e --id TheDocumentFoundation.LibreOffice #LibreOffice
-#-------------------------------------------------------
-#! Clipchamp
-#winget install -e --id Clipchamp.Clipchamp_yxz26nhyzhsrt
-#! Google.WebDesigner
-#winget install -e --id Google.WebDesigner # Google WebDesigner
-#! Translator
-#winget install -e --id Microsoft.BingTranslator_8wekyb3d8bbwe
-#! Blender
-#winget install -e --id BlenderFoundation.Blender # Blender
+
+$Apps = @(
+  [pscustomobject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
+  [pscustomobject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
+  [pscustomobject]@{Name='Python'; ID='Python.Python.3.11'}
+  [pscustomobject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
+  [pscustomobject]@{Name='VIM'; ID='XPFFTQ037JWMHS'}
+  [pscustomobject]@{Name='Git'; ID='Git.Git'}
+#  [pscustomobject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
+#  [pscustomobject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
+#  [pscustomobject]@{Name='VMware Workstation Player'; ID='VMware.WorkstationPlayer'}
+#  [pscustomobject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
+#  [pscustomobject]@{Name='ProtonVPN'; ID='ProtonTechnologies.ProtonVPN'}
+#  [pscustomobject]@{Name='OpenVPN'; ID='OpenVPNTechnologies.OpenVPN'}
+#  [pscustomobject]@{Name='ExpressVPN'; ID='ExpressVPN.ExpressVPN'}
+#  [pscustomobject]@{Name='MullvadVPN'; ID='MullvadVPN.MullvadVPN'}
+  )
+
+
+#-------- Browsers -------------------------------------
+
+$Apps = @(
+  [pscustomobject]@{Name='Brave Browser'; ID='Brave.Brave'}
+  [pscustomobject]@{Name='Opera Browser'; ID='Opera.Opera'}
+  [pscustomobject]@{Name='Edge Browser'; ID='XPFFTQ037JWMHS'}
+  [pscustomobject]@{Name='Firefox Browser'; ID='Mozilla.Firefox'}
+  [pscustomobject]@{Name='Tor Browser'; ID='TorProject.TorBrowser'}
+  [pscustomobject]@{Name='Waterfox Browser'; ID='Waterfox.Waterfox'}
+  [pscustomobject]@{Name='Google Chrome Browser'; ID='Google.Chrome'}
+  [pscustomobject]@{Name='Google Chrome Canary Browser'; ID='Google.Chrome.Canary'}
+  [pscustomobject]@{Name='Vivaldi Browser'; ID='VivaldiTechnologies.Vivaldi'}
+#  [pscustomobject]@{Name='K-Meleon Browser'; ID='kmeleonbrowser.K-Meleon'}
+#  [pscustomobject]@{Name='LibreWolf Browser'; ID='LibreWolf.LibreWolf'}
+#  [pscustomobject]@{Name='Yandex Browser'; ID='Yandex.Browser'}
+  )
+
+foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
+#-------- eMail Client ---------------------------------
+
+$Apps = @(
+  [pscustomobject]@{Name='Thunderbird Mail Client'; ID='Mozilla.Thunderbird'}
+  [pscustomobject]@{Name='BetterBird Mail Client'; ID='Betterbird.Betterbird'}
+#  [pscustomobject]@{Name='Zoho Mail Client'; ID='Zoho.ZohoMail.Desktop'}
+#  [pscustomobject]@{Name='Foxmail Mail Client'; ID='Tencent.Foxmail'}
+  )
+
+foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
+#-------- Communications -------------------------------
+
+$Apps = @(
+  [pscustomobject]@{Name='Skype'; ID='Microsoft.Skype'}
+  [pscustomobject]@{Name='Discord'; ID='Discord.Discord'}
+  [pscustomobject]@{Name='WhatsApp'; ID='WhatsApp.WhatsApp'}
+  [pscustomobject]@{Name='HexChat'; ID='HexChat.HexChat'}
+  [pscustomobject]@{Name='Teams'; ID='Microsoft.Teams'}
+  [pscustomobject]@{Name='WeChat'; ID='Tencent.WeChat'}
+  [pscustomobject]@{Name='LINE'; ID='LINE.LINE'}
+  [pscustomobject]@{Name='Zoom'; ID='Zoom.Zoom'}
+  [pscustomobject]@{Name='Reddit'; ID='9NCFHPQ558DN'}
+  [pscustomobject]@{Name='Signal'; ID='OpenWhisperSystems.Signal'}
+  [pscustomobject]@{Name='Telegram'; ID='Telegram.TelegramDesktop'}
+  [pscustomobject]@{Name='Facebook'; ID='FACEBOOK.FACEBOOK_8xx8rvfyw5nnt'}
+  [pscustomobject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
+  )
+
+foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #-------------------------------------------------------
-#! OpenVPN 
-#winget install -e --id OpenVPNTechnologies.OpenVPN # OpenVPN
-#! ExpressVPN
-#winget install -e --id ExpressVPN.ExpressVPN # ExpressVPN
-#! MullvadVPN
-#winget install -e --id MullvadVPN.MullvadVPN # MullvadVPN
-#! ProtonVPN
-#winget install -e --id ProtonTechnologies.ProtonVPN
+
+$Apps = @(
+  [pscustomobject]@{Name='Clipchamp'; ID='Clipchamp.Clipchamp_yxz26nhyzhsrt'}
+  [pscustomobject]@{Name='Microsoft Translator'; ID='Microsoft.BingTranslator_8wekyb3d8bbwe'}
+  [pscustomobject]@{Name='Adobe Acrobat Reader'; ID='Adobe.Acrobat.Reader.64-bit'}
+  [pscustomobject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
+  [pscustomobject]@{Name='Google.WebDesigner'; ID='Google.WebDesigner'}
+  [pscustomobject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
+  [pscustomobject]@{Name='Teamviewer'; ID='TeamViewer.TeamViewe'}
+  [pscustomobject]@{Name='Adobe Brackets'; ID='Adobe.Brackets'}
+  [pscustomobject]@{Name='OneDrive'; ID='Microsoft.OneDrive'}
+  [pscustomobject]@{Name='Goolge Drive'; ID='Google.Drive'}
+  [pscustomobject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
+  [pscustomobject]@{Name='PowerToys'; ID='XP89DCGQ3K6VLD'}
+  )
+
+foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
 #-------------------------------------------------------
-#! VirtualBox
-winget install -e --id Oracle.VirtualBox
-#! VMware Workstation Pro
-winget install -e --id VMware.WorkstationPro # VMware Workstation
-#! VMware Workstation Player
-winget install -e --id VMware.WorkstationPlayer # VMware Player
-#! Wireshark
-winget install -e --id WiresharkFoundation.Wireshark # Wireshark
+
+$Apps = @(
+  [pscustomobject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
+  [pscustomobject]@{Name='qBittorrent'; ID='qBittorrent.qBittorrent'}
+  [pscustomobject]@{Name='Blender'; ID='BlenderFoundation.Blender'}
+  [pscustomobject]@{Name='FarManager'; ID='FarManager.FarManager'}
+  [pscustomobject]@{Name='Keepass'; ID='DominikReichl.KeePass'}
+  [pscustomobject]@{Name='Inkscape'; ID='9PD9BHGLFC7H'}
+  [pscustomobject]@{Name='Gimp'; ID='XPDM27W10192Q0'}
+  [pscustomobject]@{Name='VLC'; ID='XPDM1ZW6815MQM'}
+  [pscustomobject]@{Name='7-Zip'; ID='7zip.7zip'}
+  [pscustomobject]@{Name='PuTTY'; ID='PuTTY.PuTTY'}
+  [pscustomobject]@{Name='WinSCP'; ID='WinSCP.WinSCP'}
+  )
+
+foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
 #-------------------------------------------------------
-winget upgrade --all --include-unknown 
+
+winget upgrade --all --include-unknown
