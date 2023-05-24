@@ -33,7 +33,7 @@ $Distros = @(
   [pscustomobject]@{Name='Kali Linux'; ID='kali-linux'}
   [pscustomobject]@{Name='Ubuntu 22.04 LTS'; ID='Ubuntu-22.04'}
   [pscustomobject]@{Name='OracleLinux 9.1'; ID='OracleLinux_9_1'}
-)
+  )
 
 foreach ($Dist in $Distros) { wsl --list --verbose $Dist.ID }
 
