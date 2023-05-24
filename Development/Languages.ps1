@@ -82,3 +82,9 @@ Function Menu {
 }   
 
 Menu
+
+
+#Install-Language en-US
+#Install-Language zh-CN 
+#Install-Language he-IL
+#Set-SystemPreferredUILanguage en-US
