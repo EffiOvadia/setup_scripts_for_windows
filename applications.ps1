@@ -1,13 +1,13 @@
 #------- Winget ----------------------------------------
 
-$progressPreference = 'silentlyContinue'
-$latestWingetMsixBundleUri = $(Invoke-RestMethod https://api.github.com/repos/microsoft/winget-cli/releases/latest).assets.browser_download_url | Where-Object {$_.EndsWith(".msixbundle")}
-$latestWingetMsixBundle = $latestWingetMsixBundleUri.Split("/")[-1]
-Write-Information "Downloading winget to artifacts directory..."
-Invoke-WebRequest -Uri $latestWingetMsixBundleUri -OutFile "./$latestWingetMsixBundle"
-Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
-Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
-Add-AppxPackage $latestWingetMsixBundle
+#$progressPreference = 'silentlyContinue'
+#$latestWingetMsixBundleUri = $(Invoke-RestMethod https://api.github.com/repos/microsoft/winget-cli/releases/latest).assets.browser_download_url | Where-Object {$_.EndsWith(".msixbundle")}
+#$latestWingetMsixBundle = $latestWingetMsixBundleUri.Split("/")[-1]
+#Write-Information "Downloading winget to artifacts directory..."
+#Invoke-WebRequest -Uri $latestWingetMsixBundleUri -OutFile "./$latestWingetMsixBundle"
+#Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
+#Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
+#Add-AppxPackage $latestWingetMsixBundle
 
 #------- WSL -------------------------------------------
 
@@ -54,6 +54,10 @@ $Apps = @(
 #  [pscustomobject]@{Name='OpenVPN'; ID='OpenVPNTechnologies.OpenVPN'}
 #  [pscustomobject]@{Name='ExpressVPN'; ID='ExpressVPN.ExpressVPN'}
 #  [pscustomobject]@{Name='MullvadVPN'; ID='MullvadVPN.MullvadVPN'}
+#  [pscustomobject]@{Name='Cloudflare Warp'; ID='Cloudflare.Warp'}
+  [pscustomobject]@{Name='WireGuard'; ID='WireGuard.WireGuard'}
+#  [pscustomobject]@{Name='Nord VPN'; ID='NordVPN.NordVPN'}
+#  [pscustomobject]@{Name='Mozilla VPN'; ID='Mozilla.VPN'}
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
@@ -114,6 +118,7 @@ $Apps = @(
   [pscustomobject]@{Name='Clipchamp'; ID='Clipchamp.Clipchamp_yxz26nhyzhsrt'}
   [pscustomobject]@{Name='Microsoft Translator'; ID='Microsoft.BingTranslator_8wekyb3d8bbwe'}
   [pscustomobject]@{Name='Adobe Acrobat Reader'; ID='Adobe.Acrobat.Reader.64-bit'}
+  [pscustomobject]@{Name='Minrosoft PowerToys'; ID='Microsoft.Powertoys'}
   [pscustomobject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
   [pscustomobject]@{Name='Google.WebDesigner'; ID='Google.WebDesigner'}
   [pscustomobject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
@@ -122,7 +127,7 @@ $Apps = @(
   [pscustomobject]@{Name='OneDrive'; ID='Microsoft.OneDrive'}
   [pscustomobject]@{Name='Goolge Drive'; ID='Google.Drive'}
   [pscustomobject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
-  [pscustomobject]@{Name='PowerToys'; ID='XP89DCGQ3K6VLD'}
+  
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
@@ -133,6 +138,7 @@ $Apps = @(
   [pscustomobject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
   [pscustomobject]@{Name='qBittorrent'; ID='qBittorrent.qBittorrent'}
   [pscustomobject]@{Name='Blender'; ID='BlenderFoundation.Blender'}
+#  [pscustomobject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
   [pscustomobject]@{Name='FarManager'; ID='FarManager.FarManager'}
   [pscustomobject]@{Name='Keepass'; ID='DominikReichl.KeePass'}
   [pscustomobject]@{Name='Inkscape'; ID='9PD9BHGLFC7H'}
