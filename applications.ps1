@@ -45,6 +45,7 @@ $Apps = @(
 #  [pscustomobject]@{Name='MullvadVPN'; ID='MullvadVPN.MullvadVPN'}
   )
 
+foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #-------- Browsers -------------------------------------
 
