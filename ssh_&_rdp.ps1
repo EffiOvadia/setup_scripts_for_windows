@@ -68,43 +68,40 @@ Function RDP {
 }
 
 Function OpenSSH {
-  ### Install/Remove OpenSSH service
+  #/ Install/Remove OpenSSH service
   [cmdletbinding()] param([ValidateSet('Install', 'Set', 'Uninstall')][string]$Action)
 
-  ### Check if running as Administrator and setting Execution Policy for scripts
+  #/ Check if running as Administrator and setting Execution Policy for scripts
   $Admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]'Administrator')
   If ($Admin) { Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force } else { Write-Host "Run as Admin"; Break }
 
   Switch ($Action) {
     Install {
-      ### Enable/Install Linux Subsystem feature
+      #/ Enable/Install Linux Subsystem feature
       if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
       { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
-      ### Add windows capability: OpenSSH Client
+      #/ Add windows capability: OpenSSH Client
       If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
       { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
-      ### Add windows capability: OpenSSH Server
+      #/ Add windows capability: OpenSSH Server
       If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed" )
       { Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 }
-      ### Enable/Install Telnet client
-      if ( $(Get-WindowsOptionalFeature -Online -FeatureName "TelnetClient").state -ne "Enabled" ) 
-      { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "TelnetClient" -All }
-      ### 
+      #/  
       Clear-Host ; Write-Host "Restart Required"
     }
 
     Set {
-      ### Rebooting the system if needed
+      #/ Rebooting the system if needed
       if ( $(Get-PackageProvider).name -NotContains "NuGet" ) { Install-PackageProvider -Name NuGet -Force }
       if ( $(Get-Module).name -NotContains "PendingReboot" ) { Install-Module -Name PendingReboot -Force }
       if ( (Test-PendingReboot -SkipConfigurationManagerClientCheck).IsRebootPending ) 
       { Write-Host "Restart Required" ; break }
             
-      ### Set OpenSSH Service to start Automaticly
+      #/ Set OpenSSH Service to start Automaticly
       if ( $(Get-Service -Name SSHd ) ) { Set-Service -Name SSHd -StartupType Automatic ; Restart-Service -Name SSHd }
       if ( $(Get-Service -Name SSH-Agent ) ) { Set-Service -Name SSH-Agent -StartupType disable ; Stop-Service -Name SSH-Agent }
 
-      ### Set PowerShell as default SSH shell
+      #/ Set PowerShell as default SSH shell
       if ( $(Test-Path HKLM:\SOFTWARE\OpenSSH) ) {
         $Path = "HKLM:\SOFTWARE\OpenSSH"
         $Shell = "$ENV:Windir\System32\WindowsPowerShell\v1.0\powershell.exe"
@@ -113,7 +110,7 @@ Function OpenSSH {
         New-ItemProperty $Path -Force -Name DefaultShellCommandOption -Value "/c" -PropertyType String
       }
 			
-      ### Adding firewall rule if needed 
+      #/ Adding firewall rule if needed 
       If ( !((Get-NetFirewallRule).Name -like "*SSH*") ) {
         $FW_RuleParameters_SSH =
         @{  
@@ -132,10 +129,10 @@ Function OpenSSH {
         New-NetFirewallRule @FW_RuleParameters_SSH
       }
 
-      ### Remove Legacy module from previous setup (if Exist)
+      #/ Remove Legacy module from previous setup (if Exist)
       If ( Get-Module -ListAvailable -Name OpenSSHUtils ) { Uninstall-Module -Name OpenSSHUtils }
     
-      ### -----------------------------------------------------------------------
+      #@ -------------------------------------------------------
       $FileContent = 
       (
         "PubkeyAuthentication   yes",
@@ -150,7 +147,7 @@ Function OpenSSH {
       $ACL = Get-Acl "$ENV:ProgramData\ssh\sshd_config"
       $ACL.SetSecurityDescriptorSddlForm('O:SYG:SYD:PAI(A;;FA;;;SY)(A;;FA;;;BA)')
       $ACL | Set-Acl
-      ### -----------------------------------------------------------------------
+      #@ -------------------------------------------------------
       $FileContent = 
       (
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNCmaqfNc79iOZbqScO8uLDWBhHRMHUAEbUq3/PR9zj b3:2e:97:e8:bb:f8:1a:20:a7:93:c7:cf:09:f2:a6:88",
@@ -160,7 +157,7 @@ Function OpenSSH {
       $ACL = Get-Acl "$ENV:ProgramData\ssh\administrators_authorized_keys"
       $ACL.SetSecurityDescriptorSddlForm('O:SYG:SYD:PAI(A;;FA;;;SY)(A;;FA;;;BA)')
       $ACL | Set-Acl
-      ### -----------------------------------------------------------------------
+      #@ -------------------------------------------------------
       Restart-Service -Name SSHd
       #Explorer.exe /SELECT,$Target
     }

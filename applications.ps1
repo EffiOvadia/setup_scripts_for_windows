@@ -20,6 +20,9 @@ If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne 
 #/ Add windows capability: OpenSSH Server
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed" )
 { Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 }
+#/ Enable/Install Telnet client
+if ( $(Get-WindowsOptionalFeature -Online -FeatureName "TelnetClient").state -ne "Enabled" ) 
+{ Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "TelnetClient" -All }
 #/ set wsl default version to 2
 wsl --set-default-version 2
 #/ update wsl subsystem
