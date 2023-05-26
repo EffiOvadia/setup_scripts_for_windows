@@ -37,8 +37,8 @@ $Distros = @(
   [PSCustomObject]@{Name='Oracle Linux 9.1'; ID='OracleLinux_9_1'}
   )
 
-foreach ($Dist in $Distros) { wsl --list --verbose $Dist.ID }
-
+foreach ($Dist in $Distros) { wsl --install --no-launch -d $Dist.ID }
+  
 #@ ----- Development -------------------------------------
 
 $Apps = @(
@@ -155,11 +155,3 @@ foreach ($App in $Apps) {winget install --accept-package-agreements --accept-sou
 #@ -------------------------------------------------------
 
 winget upgrade --all --include-unknown
-
-
-#@ Comment
-#! Comment
-#- Comment
-#? Comment
-#* Comment
-#/ Comment
