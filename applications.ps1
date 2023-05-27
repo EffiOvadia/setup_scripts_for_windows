@@ -14,15 +14,16 @@
 #/ Enable/Install Linux Subsystem feature
 if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
   { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
+#/ Enable/Install Telnet client
+if ( $(Get-WindowsOptionalFeature -Online -FeatureName "TelnetClient").state -ne "Enabled" ) 
+{ Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "TelnetClient" -All }
 #/ Add windows capability: OpenSSH Client
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
   { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
 #/ Add windows capability: OpenSSH Server
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed" )
   { Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 }
-#/ Enable/Install Telnet client
-if ( $(Get-WindowsOptionalFeature -Online -FeatureName "TelnetClient").state -ne "Enabled" ) 
-  { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "TelnetClient" -All }
+
 #/ set wsl default version to 2
 wsl --set-default-version 2
 #/ update wsl subsystem
@@ -45,7 +46,6 @@ foreach ($Dist in $Distros) { wsl --install --no-launch -d $Dist.ID }
 wsl --list --verbose
 
 #@ ----- Development -------------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
@@ -54,7 +54,6 @@ $Apps =
   [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
   [PSCustomObject]@{Name='VIM'; ID='XPFFTQ037JWMHS'}
   [PSCustomObject]@{Name='Git'; ID='Git.Git'}
-  )
   #/  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
   #/  [PSCustomObject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
   #/  [PSCustomObject]@{Name='VMware Workstation Player'; ID='VMware.WorkstationPlayer'}
@@ -67,11 +66,10 @@ $Apps =
   #/  [PSCustomObject]@{Name='WireGuard'; ID='WireGuard.WireGuard'}
   #/  [PSCustomObject]@{Name='Nord VPN'; ID='NordVPN.NordVPN'}
   #/  [PSCustomObject]@{Name='Mozilla VPN'; ID='Mozilla.VPN'}
+  )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-
 #@ ----- Browsers ----------------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='Brave Browser'; ID='Brave.Brave'}
@@ -82,28 +80,24 @@ $Apps =
   [PSCustomObject]@{Name='Waterfox Browser'; ID='Waterfox.Waterfox'}
   [PSCustomObject]@{Name='Google Chrome Browser'; ID='Google.Chrome'}
   [PSCustomObject]@{Name='Vivaldi Browser'; ID='VivaldiTechnologies.Vivaldi'}
-  )
   #/  [PSCustomObject]@{Name='Google Chrome Canary Browser'; ID='Google.Chrome.Canary'}
   #/  [PSCustomObject]@{Name='K-Meleon Browser'; ID='kmeleonbrowser.K-Meleon'}
   #/  [PSCustomObject]@{Name='LibreWolf Browser'; ID='LibreWolf.LibreWolf'}
   #/  [PSCustomObject]@{Name='Yandex Browser'; ID='Yandex.Browser'}
+  )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-
 #@ ----- eMail Client ------------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='Thunderbird Mail Client'; ID='Mozilla.Thunderbird'}
   [PSCustomObject]@{Name='BetterBird Mail Client'; ID='Betterbird.Betterbird'}
-  )
   #/  [PSCustomObject]@{Name='Zoho Mail Client'; ID='Zoho.ZohoMail.Desktop'}
   #/  [PSCustomObject]@{Name='Foxmail Mail Client'; ID='Tencent.Foxmail'}
+  )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-
 #@ ----- Communications ----------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='Skype'; ID='Microsoft.Skype'}
@@ -122,9 +116,7 @@ $Apps =
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-
 #@ -------------------------------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='Microsoft Translator'; ID='Microsoft.BingTranslator_8wekyb3d8bbwe'}
@@ -142,9 +134,7 @@ $Apps =
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-
 #@ -------------------------------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
@@ -158,11 +148,9 @@ $Apps =
   [PSCustomObject]@{Name='7-Zip'; ID='7zip.7zip'}
   [PSCustomObject]@{Name='PuTTY'; ID='PuTTY.PuTTY'}
   [PSCustomObject]@{Name='WinSCP'; ID='WinSCP.WinSCP'}
-  )
   #/  [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
+  )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-
 #@ -------------------------------------------------------
-
 winget upgrade --all --include-unknown
