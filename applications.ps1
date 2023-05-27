@@ -46,6 +46,7 @@ foreach ($Dist in $Distros) { wsl --install --no-launch -d $Dist.ID }
 wsl --list --verbose
 
 #@ ----- Development -------------------------------------
+
 $Apps = 
   @(
   [PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
@@ -69,7 +70,9 @@ $Apps =
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
 #@ ----- Browsers ----------------------------------------
+
 $Apps = 
   @(
   [PSCustomObject]@{Name='Brave Browser'; ID='Brave.Brave'}
@@ -87,7 +90,9 @@ $Apps =
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
 #@ ----- eMail Client ------------------------------------
+
 $Apps = 
   @(
   [PSCustomObject]@{Name='Thunderbird Mail Client'; ID='Mozilla.Thunderbird'}
@@ -97,7 +102,9 @@ $Apps =
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
 #@ ----- Communications ----------------------------------
+
 $Apps = 
   @(
   [PSCustomObject]@{Name='Skype'; ID='Microsoft.Skype'}
@@ -116,7 +123,9 @@ $Apps =
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
 #@ -------------------------------------------------------
+
 $Apps = 
   @(
   [PSCustomObject]@{Name='Microsoft Translator'; ID='Microsoft.BingTranslator_8wekyb3d8bbwe'}
@@ -134,7 +143,9 @@ $Apps =
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
 #@ -------------------------------------------------------
+
 $Apps = 
   @(
   [PSCustomObject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
@@ -152,5 +163,7 @@ $Apps =
   )
 
 foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+
 #@ -------------------------------------------------------
+
 winget upgrade --all --include-unknown
