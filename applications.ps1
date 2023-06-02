@@ -49,14 +49,14 @@ wsl --list --verbose
 
 $Apps = 
   @(
-  [PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
-  [PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
-  [PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
-  [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
-  [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
-  [PSCustomObject]@{Name='VIM'; ID='XPFFTQ037JWMHS'}
-  [PSCustomObject]@{Name='Git'; ID='Git.Git'}
-  #/  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
+  #[PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
+  #[PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
+  #[PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
+  #[PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
+  #/  [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
+  #[PSCustomObject]@{Name='VIM'; ID='vim.vim'}
+  #[PSCustomObject]@{Name='Git'; ID='Git.Git'}
+  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
   #/  [PSCustomObject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
   #/  [PSCustomObject]@{Name='VMware Workstation Player'; ID='VMware.WorkstationPlayer'}
   #/  [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
@@ -135,6 +135,7 @@ $Apps =
   [PSCustomObject]@{Name='Minrosoft PowerToys'; ID='Microsoft.Powertoys'}
   [PSCustomObject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
   [PSCustomObject]@{Name='Google.WebDesigner'; ID='Google.WebDesigner'}
+  [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}
   [PSCustomObject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
   [PSCustomObject]@{Name='IrfanView'; ID='IrfanSkiljan.IrfanView'}
   [PSCustomObject]@{Name='Teamviewer'; ID='TeamViewer.TeamViewe'}
