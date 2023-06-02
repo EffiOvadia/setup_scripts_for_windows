@@ -50,6 +50,7 @@ wsl --list --verbose
 $Apps = 
   @(
   [PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
+  [PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
   [PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
   [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
   [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
@@ -135,9 +136,11 @@ $Apps =
   [PSCustomObject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
   [PSCustomObject]@{Name='Google.WebDesigner'; ID='Google.WebDesigner'}
   [PSCustomObject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
+  [PSCustomObject]@{Name='IrfanView'; ID='IrfanSkiljan.IrfanView'}
   [PSCustomObject]@{Name='Teamviewer'; ID='TeamViewer.TeamViewe'}
   [PSCustomObject]@{Name='Adobe Brackets'; ID='Adobe.Brackets'}
   [PSCustomObject]@{Name='OneDrive'; ID='Microsoft.OneDrive'}
+  [PSCustomObject]@{Name='Balena Etcher'; ID='Balena.Etcher'}
   [PSCustomObject]@{Name='Goolge Drive'; ID='Google.Drive'}
   [PSCustomObject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
   )
