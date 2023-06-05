@@ -30,14 +30,13 @@ If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne 
 #@ ----- Development -------------------------------------
 $Apps = 
   @(
-  #[PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
-  #[PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
-  #[PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
-  #[PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
+  [PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
+  [PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
+  [PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
+  #/  [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
   #/  [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
-  #[PSCustomObject]@{Name='VIM'; ID='vim.vim'}
-  #[PSCustomObject]@{Name='Git'; ID='Git.Git'}
-  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
+  #/  [PSCustomObject]@{Name='VIM'; ID='vim.vim'}
+  #/  [PSCustomObject]@{Name='Git'; ID='Git.Git'}
   #/  [PSCustomObject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
   #/  [PSCustomObject]@{Name='VMware Workstation Player'; ID='VMware.WorkstationPlayer'}
   #/  [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
@@ -47,6 +46,7 @@ $Apps =
   #/  [PSCustomObject]@{Name='MullvadVPN'; ID='MullvadVPN.MullvadVPN'}
   #/  [PSCustomObject]@{Name='Cloudflare Warp'; ID='Cloudflare.Warp'}
   #/  [PSCustomObject]@{Name='WireGuard'; ID='WireGuard.WireGuard'}
+  #/  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
   #/  [PSCustomObject]@{Name='Nord VPN'; ID='NordVPN.NordVPN'}
   #/  [PSCustomObject]@{Name='Mozilla VPN'; ID='Mozilla.VPN'}
   )
@@ -64,9 +64,8 @@ $Apps =
   [PSCustomObject]@{Name='Tor Browser'; ID='TorProject.TorBrowser'}
   [PSCustomObject]@{Name='Waterfox Browser'; ID='Waterfox.Waterfox'}
   [PSCustomObject]@{Name='Google Chrome Browser'; ID='Google.Chrome'}
-  [PSCustomObject]@{Name='Vivaldi Browser'; ID='VivaldiTechnologies.Vivaldi'}
+  #/  [PSCustomObject]@{Name='Vivaldi Browser'; ID='VivaldiTechnologies.Vivaldi'}
   #/  [PSCustomObject]@{Name='Google Chrome Canary Browser'; ID='Google.Chrome.Canary'}
-  #/  [PSCustomObject]@{Name='K-Meleon Browser'; ID='kmeleonbrowser.K-Meleon'}
   #/  [PSCustomObject]@{Name='LibreWolf Browser'; ID='LibreWolf.LibreWolf'}
   #/  [PSCustomObject]@{Name='Yandex Browser'; ID='Yandex.Browser'}
   )
@@ -75,7 +74,7 @@ foreach ($App in $Apps)
   {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #@ ----- eMail Client ------------------------------------
-$Apps = 
+$Apps =
   @(
   [PSCustomObject]@{Name='Thunderbird Mail Client'; ID='Mozilla.Thunderbird'}
   [PSCustomObject]@{Name='BetterBird Mail Client'; ID='Betterbird.Betterbird'}
@@ -151,4 +150,4 @@ foreach ($App in $Apps)
   {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #@ -------------------------------------------------------
-winget upgrade --all --include-unknown
+winget upgrade --all --include-unknown --silent --verbose
