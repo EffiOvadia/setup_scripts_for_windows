@@ -2,16 +2,6 @@
 #/ Enable/Install Linux Subsystem feature
 if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
   { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
-#/ Enable/Install Telnet client
-if ( $(Get-WindowsOptionalFeature -Online -FeatureName "TelnetClient").state -ne "Enabled" )
-  { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "TelnetClient" -All }
-#/ Add windows capability: OpenSSH Client
-If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
-  { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
-#/ Add windows capability: OpenSSH Server
-If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed" )
-  { Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 }
-
 #/ set wsl default version to 2 & update wsl subsystem
 wsl --set-default-version 2 ; wsl --update
 #/ list all available distro in MS store
@@ -29,6 +19,13 @@ $Distros =
 foreach ($Dist in $Distros) { wsl --install --no-launch -d $Dist.ID }
 #/ list all installed distros on local machine
 wsl --list --verbose
+#@ ------- Windows Components ----------------------------
+#/ Add windows capability: OpenSSH Client
+If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
+  { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
+#/ Add windows capability: OpenSSH Server
+If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed" )
+  { Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 }
 
 #@ ----- Development -------------------------------------
 $Apps = 
