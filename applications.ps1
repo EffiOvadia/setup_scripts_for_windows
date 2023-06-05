@@ -1,22 +1,10 @@
-#@ ------- Winget ----------------------------------------
-
-#- $progressPreference = 'silentlyContinue'
-#- $latestWingetMsixBundleUri = $(Invoke-RestMethod https://api.github.com/repos/microsoft/winget-cli/releases/latest).assets.browser_download_url | Where-Object {$_.EndsWith(".msixbundle")}
-#- $latestWingetMsixBundle = $latestWingetMsixBundleUri.Split("/")[-1]
-#- Write-Information "Downloading winget to artifacts directory..."
-#- Invoke-WebRequest -Uri $latestWingetMsixBundleUri -OutFile "./$latestWingetMsixBundle"
-#- Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
-#- Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
-#- Add-AppxPackage $latestWingetMsixBundle
-
 #@ ------- WSL -------------------------------------------
-
 #/ Enable/Install Linux Subsystem feature
 if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
   { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
 #/ Enable/Install Telnet client
-if ( $(Get-WindowsOptionalFeature -Online -FeatureName "TelnetClient").state -ne "Enabled" ) 
-{ Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "TelnetClient" -All }
+if ( $(Get-WindowsOptionalFeature -Online -FeatureName "TelnetClient").state -ne "Enabled" )
+  { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "TelnetClient" -All }
 #/ Add windows capability: OpenSSH Client
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
   { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
@@ -24,13 +12,11 @@ If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne 
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed" )
   { Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 }
 
-#/ set wsl default version to 2
-wsl --set-default-version 2
-#/ update wsl subsystem
-wsl --update
+#/ set wsl default version to 2 & update wsl subsystem
+wsl --set-default-version 2 ; wsl --update
 #/ list all available distro in MS store
 wsl --list --online
-
+#/ Install selected Linux dist
 $Distros = 
   @(
   [PSCustomObject]@{Name='Ubuntu'; ID='Ubuntu'}
@@ -41,12 +27,10 @@ $Distros =
   )
 
 foreach ($Dist in $Distros) { wsl --install --no-launch -d $Dist.ID }
-
 #/ list all installed distros on local machine
 wsl --list --verbose
 
 #@ ----- Development -------------------------------------
-
 $Apps = 
   @(
   #[PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
@@ -70,10 +54,10 @@ $Apps =
   #/  [PSCustomObject]@{Name='Mozilla VPN'; ID='Mozilla.VPN'}
   )
 
-foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #@ ----- Browsers ----------------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='Brave Browser'; ID='Brave.Brave'}
@@ -90,10 +74,10 @@ $Apps =
   #/  [PSCustomObject]@{Name='Yandex Browser'; ID='Yandex.Browser'}
   )
 
-foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #@ ----- eMail Client ------------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='Thunderbird Mail Client'; ID='Mozilla.Thunderbird'}
@@ -102,10 +86,10 @@ $Apps =
   #/  [PSCustomObject]@{Name='Foxmail Mail Client'; ID='Tencent.Foxmail'}
   )
 
-foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #@ ----- Communications ----------------------------------
-
 $Apps = 
   @(
   [PSCustomObject]@{Name='Skype'; ID='Microsoft.Skype'}
@@ -123,10 +107,10 @@ $Apps =
   [PSCustomObject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
   )
 
-foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
-#@ -------------------------------------------------------
-
+#@ ----- Productivity ------------------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='Microsoft Translator'; ID='Microsoft.BingTranslator_8wekyb3d8bbwe'}
@@ -135,7 +119,6 @@ $Apps =
   [PSCustomObject]@{Name='Minrosoft PowerToys'; ID='Microsoft.Powertoys'}
   [PSCustomObject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
   [PSCustomObject]@{Name='Google.WebDesigner'; ID='Google.WebDesigner'}
-  [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}
   [PSCustomObject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
   [PSCustomObject]@{Name='IrfanView'; ID='IrfanSkiljan.IrfanView'}
   [PSCustomObject]@{Name='Teamviewer'; ID='TeamViewer.TeamViewe'}
@@ -146,15 +129,17 @@ $Apps =
   [PSCustomObject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
   )
 
-foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
-#@ -------------------------------------------------------
-
+#@ ----- Free Software -----------------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
   [PSCustomObject]@{Name='qBittorrent'; ID='qBittorrent.qBittorrent'}
-  [PSCustomObject]@{Name='Blender'; ID='BlenderFoundation.Blender'}
+  #/  [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
+  #/  [PSCustomObject]@{Name='Blender'; ID='BlenderFoundation.Blender'}
+  [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}
   [PSCustomObject]@{Name='FarManager'; ID='FarManager.FarManager'}
   [PSCustomObject]@{Name='Keepass'; ID='DominikReichl.KeePass'}
   [PSCustomObject]@{Name='Inkscape'; ID='9PD9BHGLFC7H'}
@@ -163,11 +148,10 @@ $Apps =
   [PSCustomObject]@{Name='7-Zip'; ID='7zip.7zip'}
   [PSCustomObject]@{Name='PuTTY'; ID='PuTTY.PuTTY'}
   [PSCustomObject]@{Name='WinSCP'; ID='WinSCP.WinSCP'}
-  #/  [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
   )
 
-foreach ($App in $Apps) {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #@ -------------------------------------------------------
-
 winget upgrade --all --include-unknown
