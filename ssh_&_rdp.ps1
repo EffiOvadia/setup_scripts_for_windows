@@ -75,7 +75,8 @@ Function OpenSSH {
   $Admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]'Administrator')
   If ($Admin) { Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force } else { Write-Host "Run as Admin"; Break }
 
-  Switch ($Action) {
+  Switch ($Action) 
+    {
     Install {
       #/ Enable/Install Linux Subsystem feature
       if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
