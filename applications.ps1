@@ -1,26 +1,7 @@
-winget install --accept-package-agreements --accept-source-agreements --exact --ID Microsoft.PowerShell
-#@ ------- WSL -------------------------------------------
-#/ Enable/Install Linux Subsystem feature
-if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
-  { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
-#/ set wsl default version to 2 & update wsl subsystem
-wsl --set-default-version 2 ; wsl --update
-#/ list all available distro in MS store
-wsl --list --online
-#/ Install selected Linux dist
-$Distros = 
-  @(
-  [PSCustomObject]@{Name='Ubuntu'; ID='Ubuntu'}
-  [PSCustomObject]@{Name='Debian GNU/Linux'; ID='Debian'}
-  [PSCustomObject]@{Name='Kali Linux Rolling'; ID='kali-linux'}
-  [PSCustomObject]@{Name='Ubuntu 22.04 LTS'; ID='Ubuntu-22.04'}
-  [PSCustomObject]@{Name='Oracle Linux 9.1'; ID='OracleLinux_9_1'}
-  )
-
-foreach ($Dist in $Distros) { wsl --install --no-launch -d $Dist.ID }
-#/ list all installed distros on local machine
-wsl --list --verbose
-#@ ----- SSH client & server -----------------------------
+$Apps = @( [PSCustomObject]@{Name='PowerShell'; ID='Microsoft.PowerShell'} )
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
+#@ ----- SSH client & server ----------------------------- 
 #/ Add windows capability: OpenSSH Client & Server 
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
   { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
@@ -85,19 +66,40 @@ $ACL.SetSecurityDescriptorSddlForm('O:SYG:SYD:PAI(A;;FA;;;SY)(A;;FA;;;BA)')
 $ACL | Set-Acl
 #/ Restart th e SSH Server
 Stop-Service -Name SSH-Agent ; Restart-Service -Name SSHd
+#@ ------- WSL ------------------------------------------- 
+#/ Enable/Install Linux Subsystem feature
+if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
+  { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
+#/ set wsl default version to 2 & update wsl subsystem 
+wsl --set-default-version 2 ; wsl --update 
+#/ list all available distro in MS store 
+wsl --list --online 
+#/ Install selected Linux dist 
+$Distros = 
+  @(
+  [PSCustomObject]@{Name='Ubuntu'; ID='Ubuntu'}
+  [PSCustomObject]@{Name='Debian GNU/Linux'; ID='Debian'}
+  [PSCustomObject]@{Name='Kali Linux Rolling'; ID='kali-linux'}
+  [PSCustomObject]@{Name='Ubuntu 22.04 LTS'; ID='Ubuntu-22.04'}
+  [PSCustomObject]@{Name='Oracle Linux 9.1'; ID='OracleLinux_9_1'}
+  )
+
+foreach ( $Dist in $Distros ) { wsl --install --no-launch -d $Dist.ID } 
+#/ list all installed distros on local machine 
+wsl --list --verbose 
 #@ ----- Development -------------------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
+  [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
   [PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
   [PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
-  #/  [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
-  #/  [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
-  #/  [PSCustomObject]@{Name='VIM'; ID='vim.vim'}
-  #/  [PSCustomObject]@{Name='Git'; ID='Git.Git'}
+  [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
+  [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
+  [PSCustomObject]@{Name='VIM'; ID='vim.vim'}
+  [PSCustomObject]@{Name='Git'; ID='Git.Git'}
   #/  [PSCustomObject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
   #/  [PSCustomObject]@{Name='VMware Workstation Player'; ID='VMware.WorkstationPlayer'}
-  #/  [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
   #/  [PSCustomObject]@{Name='ProtonVPN'; ID='ProtonTechnologies.ProtonVPN'}
   #/  [PSCustomObject]@{Name='OpenVPN'; ID='OpenVPNTechnologies.OpenVPN'}
   #/  [PSCustomObject]@{Name='ExpressVPN'; ID='ExpressVPN.ExpressVPN'}
@@ -106,13 +108,12 @@ $Apps =
   #/  [PSCustomObject]@{Name='WireGuard'; ID='WireGuard.WireGuard'}
   #/  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
   #/  [PSCustomObject]@{Name='Nord VPN'; ID='NordVPN.NordVPN'}
-  #/  [PSCustomObject]@{Name='Mozilla VPN'; ID='Mozilla.VPN'}
   )
 
-foreach ($App in $Apps) 
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
-#@ ----- Browsers ----------------------------------------
+#@ ----- Browsers & eMail Client -------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='Brave Browser'; ID='Brave.Brave'}
@@ -122,26 +123,16 @@ $Apps =
   [PSCustomObject]@{Name='Tor Browser'; ID='TorProject.TorBrowser'}
   [PSCustomObject]@{Name='Waterfox Browser'; ID='Waterfox.Waterfox'}
   [PSCustomObject]@{Name='Google Chrome Browser'; ID='Google.Chrome'}
-  #/  [PSCustomObject]@{Name='Vivaldi Browser'; ID='VivaldiTechnologies.Vivaldi'}
-  #/  [PSCustomObject]@{Name='Google Chrome Canary Browser'; ID='Google.Chrome.Canary'}
-  #/  [PSCustomObject]@{Name='LibreWolf Browser'; ID='LibreWolf.LibreWolf'}
+  [PSCustomObject]@{Name='LibreWolf Browser'; ID='LibreWolf.LibreWolf'}
+  [PSCustomObject]@{Name='Vivaldi Browser'; ID='VivaldiTechnologies.Vivaldi'}
+  [PSCustomObject]@{Name='Google Chrome Canary Browser'; ID='Google.Chrome.Canary'}
+  [PSCustomObject]@{Name='BetterBird Mail Client'; ID='Betterbird.Betterbird'}
+  [PSCustomObject]@{Name='Thunderbird Mail Client'; ID='Mozilla.Thunderbird'}
   #/  [PSCustomObject]@{Name='Yandex Browser'; ID='Yandex.Browser'}
   )
 
-foreach ($App in $Apps) 
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-
-#@ ----- eMail Client ------------------------------------
-$Apps =
-  @(
-  [PSCustomObject]@{Name='Thunderbird Mail Client'; ID='Mozilla.Thunderbird'}
-  [PSCustomObject]@{Name='BetterBird Mail Client'; ID='Betterbird.Betterbird'}
-  #/  [PSCustomObject]@{Name='Zoho Mail Client'; ID='Zoho.ZohoMail.Desktop'}
-  #/  [PSCustomObject]@{Name='Foxmail Mail Client'; ID='Tencent.Foxmail'}
-  )
-
-foreach ($App in $Apps) 
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ ----- Communications ----------------------------------
 $Apps = 
@@ -161,8 +152,8 @@ $Apps =
   [PSCustomObject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
   )
 
-foreach ($App in $Apps) 
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ ----- Productivity ------------------------------------
 $Apps = 
@@ -170,9 +161,9 @@ $Apps =
   [PSCustomObject]@{Name='Microsoft Translator'; ID='Microsoft.BingTranslator_8wekyb3d8bbwe'}
   [PSCustomObject]@{Name='Adobe Acrobat Reader'; ID='Adobe.Acrobat.Reader.64-bit'}
   [PSCustomObject]@{Name='Clipchamp'; ID='Clipchamp.Clipchamp_yxz26nhyzhsrt'}
-  [PSCustomObject]@{Name='Minrosoft PowerToys'; ID='Microsoft.Powertoys'}
+  [PSCustomObject]@{Name='Microsoft PowerToys'; ID='Microsoft.Powertoys'}
   [PSCustomObject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
-  [PSCustomObject]@{Name='Google.WebDesigner'; ID='Google.WebDesigner'}
+  #/ [PSCustomObject]@{Name='Google.WebDesigner'; ID='Google.WebDesigner'}
   [PSCustomObject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
   [PSCustomObject]@{Name='IrfanView'; ID='IrfanSkiljan.IrfanView'}
   [PSCustomObject]@{Name='Teamviewer'; ID='TeamViewer.TeamViewe'}
@@ -183,8 +174,8 @@ $Apps =
   [PSCustomObject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
   )
 
-foreach ($App in $Apps) 
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ ----- Free Software -----------------------------------
 $Apps = 
@@ -192,10 +183,14 @@ $Apps =
   [PSCustomObject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
   [PSCustomObject]@{Name='qBittorrent'; ID='qBittorrent.qBittorrent'}
   #/  [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
-  #/  [PSCustomObject]@{Name='Blender'; ID='BlenderFoundation.Blender'}
+  #/  [PSCustomObject]@{Name='Blender'; ID='BlenderFoundation.Blender'}  
+  [PSCustomObject]@{Name='Yubico Authenticator'; ID='Yubico.Authenticator'}
+  [PSCustomObject]@{Name='Yubikey Manager'; ID='Yubico.YubikeyManager'}
   [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}
   [PSCustomObject]@{Name='FarManager'; ID='FarManager.FarManager'}
   [PSCustomObject]@{Name='Keepass'; ID='DominikReichl.KeePass'}
+  #/ [PSCustomObject]@{Name='Kodi'; ID='XBMCFoundation.Kodi'}
+  [PSCustomObject]@{Name='VSCodium'; ID='VSCodium.VSCodium'}
   [PSCustomObject]@{Name='Inkscape'; ID='9PD9BHGLFC7H'}
   [PSCustomObject]@{Name='Gimp'; ID='XPDM27W10192Q0'}
   [PSCustomObject]@{Name='VLC'; ID='XPDM1ZW6815MQM'}
@@ -204,8 +199,8 @@ $Apps =
   [PSCustomObject]@{Name='WinSCP'; ID='WinSCP.WinSCP'}
   )
 
-foreach ($App in $Apps) 
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ -------------------------------------------------------
 winget upgrade --all --include-unknown --silent --verbose
