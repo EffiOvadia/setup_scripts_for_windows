@@ -1,6 +1,8 @@
 ### Enable Administrator and set the Password
-Enable-LocalUser -name "Administrator"
-Set-LocalUser    -Name "Administrator" -Password (ConvertTo-SecureString "InhaleExhale!!" -AsPlainText -Force)
+$Password = Get-Content .\passwd.administrator.txt | ConvertTo-SecureString
+if ( $Password ) 
+    { Enable-LocalUser -name Administrator
+        Set-LocalUser -Name "Administrator" -Password $Password }
 
 $Computer         = [ADSI]"WinNT://$Env:COMPUTERNAME,Computer"
 $UsersList        = @([pscustomobject]@{ Name="effio"; FullName="Effi Ovadia"; Description="System Administrator"; Password="Dalya1944--"})
