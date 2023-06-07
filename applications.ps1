@@ -91,7 +91,7 @@ wsl --list --verbose
 $Apps = 
   @(
   [PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
-  [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
+  #/ [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
   [PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
   [PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
   [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
@@ -117,7 +117,7 @@ foreach ( $App in $Apps )
 $Apps = 
   @(
   [PSCustomObject]@{Name='Brave Browser'; ID='Brave.Brave'}
-  [PSCustomObject]@{Name='Opera Browser'; ID='Opera.Opera'}
+  #/ PSCustomObject]@{Name='Opera Browser'; ID='Opera.Opera'}
   [PSCustomObject]@{Name='Edge Browser'; ID='XPFFTQ037JWMHS'}
   [PSCustomObject]@{Name='Firefox Browser'; ID='Mozilla.Firefox'}
   [PSCustomObject]@{Name='Tor Browser'; ID='TorProject.TorBrowser'}
@@ -142,14 +142,14 @@ $Apps =
   [PSCustomObject]@{Name='WhatsApp'; ID='WhatsApp.WhatsApp'}
   [PSCustomObject]@{Name='HexChat'; ID='HexChat.HexChat'}
   [PSCustomObject]@{Name='Teams'; ID='Microsoft.Teams'}
-  [PSCustomObject]@{Name='WeChat'; ID='Tencent.WeChat'}
+  #/ [PSCustomObject]@{Name='WeChat'; ID='Tencent.WeChat'}
   [PSCustomObject]@{Name='LINE'; ID='LINE.LINE'}
   [PSCustomObject]@{Name='Zoom'; ID='Zoom.Zoom'}
-  [PSCustomObject]@{Name='Reddit'; ID='9NCFHPQ558DN'}
+  #/ [PSCustomObject]@{Name='Reddit'; ID='9NCFHPQ558DN'}
   [PSCustomObject]@{Name='Signal'; ID='OpenWhisperSystems.Signal'}
   [PSCustomObject]@{Name='Telegram'; ID='Telegram.TelegramDesktop'}
   [PSCustomObject]@{Name='Facebook'; ID='FACEBOOK.FACEBOOK_8xx8rvfyw5nnt'}
-  [PSCustomObject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
+  #/ [PSCustomObject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
   )
 
 foreach ( $App in $Apps ) 
@@ -181,10 +181,10 @@ foreach ( $App in $Apps )
 $Apps = 
   @(
   [PSCustomObject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
-  [PSCustomObject]@{Name='qBittorrent'; ID='qBittorrent.qBittorrent'}
+  #/  [PSCustomObject]@{Name='qBittorrent'; ID='qBittorrent.qBittorrent'}
   #/  [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
   #/  [PSCustomObject]@{Name='Blender'; ID='BlenderFoundation.Blender'}  
-  [PSCustomObject]@{Name='Yubico Authenticator'; ID='Yubico.Authenticator'}
+  #/  [PSCustomObject]@{Name='Yubico Authenticator'; ID='Yubico.Authenticator'}
   [PSCustomObject]@{Name='Yubikey Manager'; ID='Yubico.YubikeyManager'}
   [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}
   [PSCustomObject]@{Name='FarManager'; ID='FarManager.FarManager'}
