@@ -5,7 +5,7 @@ if ( $Password )
         Set-LocalUser -Name "Administrator" -Password $Password }
 
 $Computer         = [ADSI]"WinNT://$Env:COMPUTERNAME,Computer"
-$UsersList        = @([pscustomobject]@{ Name="effio"; FullName="Effi Ovadia"; Description="System Administrator"; Password="Dalya1944--"})
+$UsersList        = @([pscustomobject]@{ Name="effio"; FullName="Effi Ovadia"; Description="System Administrator"; Password="P@ssw0rd"})
 $ExistingAccounts = $Computer.Children | Where-Object {$_.SchemaClassName -eq 'user'}  | ForEach-Object {$_.name[0].tostring()}
 
 Foreach ($User in $UsersList) 
