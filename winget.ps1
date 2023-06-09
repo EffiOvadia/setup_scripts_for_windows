@@ -1,4 +1,5 @@
 #! https://apps.microsoft.com/store/detail/app-installer/9NBLGGH4NNS1?hl=en-us&gl=cn&rtc=1
+https://github.com/microsoft/winget-cli/releases/download/v1.4.11071/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 #@ ----- Development -------------------------------------
 $Apps = 
   @(

@@ -1,3 +1,9 @@
+Get-InstalledLanguage
+
+Install-Language zh-CN
+
+Set-SystemPreferredUILanguage -Language zh-CN
+
 $CapabilityList = 
 @(
     "Language.Basic~~~zh-CN~0.0.1.0",
