@@ -1,5 +1,5 @@
-#! https://apps.microsoft.com/store/detail/app-installer/9NBLGGH4NNS1?hl=en-us&gl=cn&rtc=1
-https://github.com/microsoft/winget-cli/releases/download/v1.4.11071/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+#! https://apps.microsoft.com/store/detail/app-installer/9NBLGGH4NNS1
+#! https://github.com/microsoft/winget-cli/releases/latest
 #@ ----- Development -------------------------------------
 $Apps = 
   @(
@@ -70,7 +70,9 @@ $Apps =
   #/ [PSCustomObject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
   [PSCustomObject]@{Name='Clipchamp'; ID='Clipchamp.Clipchamp_yxz26nhyzhsrt'}
   [PSCustomObject]@{Name='Microsoft PowerToys'; ID='Microsoft.Powertoys'}
+  [PSCustomObject]@{Name='Samsung SmartSwitch'; ID='Samsung.SmartSwitch'}
   [PSCustomObject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
+  [PSCustomObject]@{Name='Samsung SmartView'; ID='Samsung.SmartView'}
   [PSCustomObject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
   [PSCustomObject]@{Name='IrfanView'; ID='IrfanSkiljan.IrfanView'}
   [PSCustomObject]@{Name='Teamviewer'; ID='TeamViewer.TeamViewe'}
@@ -78,6 +80,7 @@ $Apps =
   [PSCustomObject]@{Name='OneDrive'; ID='Microsoft.OneDrive'}
   [PSCustomObject]@{Name='Balena Etcher'; ID='Balena.Etcher'}
   [PSCustomObject]@{Name='Goolge Drive'; ID='Google.Drive'}
+  [PSCustomObject]@{Name='Samsung DeX'; ID='Samsung.DeX'}
   [PSCustomObject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
   )
 
