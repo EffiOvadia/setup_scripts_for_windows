@@ -1,9 +1,11 @@
 
-#@ Enable/Install Linux Subsystem feature
-if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
-  { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
 #@ set wsl default version to 2  
 wsl --set-default-version 2
+#@ Enable/Install Linux Subsystem feature
+if ( $(Get-WindowsOptionalFeature -Online -FeatureName "VirtualMachinePlatform").state -ne "Enabled" ) 
+  { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "VirtualMachinePlatform" -All }
+if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
+  { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
 #@ update wsl subsystem
 wsl --update 
 #@ Install selected Linux dist 
