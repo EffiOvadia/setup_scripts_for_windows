@@ -17,6 +17,7 @@ $Apps =
   #/  [PSCustomObject]@{Name='Cloudflare Warp'; ID='Cloudflare.Warp'}
   #/  [PSCustomObject]@{Name='WireGuard'; ID='WireGuard.WireGuard'}
   #/  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
+  #/  [PSCustomObject]@{Name='Neovim'; ID='Neovim.Neovim'}
   )
 
 foreach ( $App in $Apps ) 
