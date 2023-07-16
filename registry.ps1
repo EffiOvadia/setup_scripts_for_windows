@@ -70,3 +70,10 @@ Pop-Location
   #Set-ItemProperty -Path . OEMID -Force -Value DELL
   #Set-ItemProperty -Path . StoreContentModifier -Force -Value DELL_XPS
 #Pop-Location
+
+# Office Copilot
+Push-Location -path "HKCU:\Software\Microsoft\Office\16.0\Common\ExperimentConfigs\ExternalFeatureOverrides\"
+  Set-ItemProperty -Path ".\word"    Microsoft.Office.Word.Copilot    -Force -Value true
+  Set-ItemProperty -Path ".\Excel"   Microsoft.Office.Excel.Copilot   -Force -Value true
+  Set-ItemProperty -Path ".\OneNote" Microsoft.Office.OneNote.Copilot -Force -Value true
+Pop-Location

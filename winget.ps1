@@ -1,5 +1,7 @@
 #! https://apps.microsoft.com/store/detail/app-installer/9NBLGGH4NNS1
 #! https://github.com/microsoft/winget-cli/releases/latest
+#! https://aka.ms/getwinget
+#! ms-windows-store://pdp/?ProductId=9NBLGGH4NNS1
 #@ ----- Development -------------------------------------
 $Apps = 
   @(
@@ -11,6 +13,8 @@ $Apps =
   [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
   [PSCustomObject]@{Name='VIM'; ID='vim.vim'}
   [PSCustomObject]@{Name='Git'; ID='Git.Git'}
+  [PSCustomObject]@{Name='DotNet6'; ID='Microsoft.DotNet.DesktopRuntime.6'}
+  [PSCustomObject]@{Name='DotNet7'; ID='Microsoft.DotNet.DesktopRuntime.7'}
   #/  [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
   #/  [PSCustomObject]@{Name='ProtonVPN'; ID='ProtonTechnologies.ProtonVPN'}
   #/  [PSCustomObject]@{Name='OpenVPN'; ID='OpenVPNTechnologies.OpenVPN'}
