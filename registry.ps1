@@ -77,3 +77,10 @@ Push-Location -path "HKCU:\Software\Microsoft\Office\16.0\Common\ExperimentConfi
   Set-ItemProperty -Path ".\Excel"   Microsoft.Office.Excel.Copilot   -Force -Value true
   Set-ItemProperty -Path ".\OneNote" Microsoft.Office.OneNote.Copilot -Force -Value true
 Pop-Location
+
+# $URI="http://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60"
+Push-Location -path "HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration\"
+  Set-ItemProperty -Path "." AudienceData  -Force -Value Production::CC
+  Set-ItemProperty -Path "." CDNBaseUrl    -Force -Value $URI
+  Set-ItemProperty -Path "." UpdateChannel -Force -Value $URI
+Pop-Location
