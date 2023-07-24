@@ -84,3 +84,5 @@ Push-Location -path "HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration\"
   Set-ItemProperty -Path "." CDNBaseUrl    -Force -Value $URI
   Set-ItemProperty -Path "." UpdateChannel -Force -Value $URI
 Pop-Location
+
+

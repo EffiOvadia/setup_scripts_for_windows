@@ -96,6 +96,7 @@ foreach ( $App in $Apps )
 $Apps = 
   @(
   [PSCustomObject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
+  [PSCustomObject]@{Name='YubiKey Personalization'; ID='Yubico.YubiKeyPersonalizationTool'}
   [PSCustomObject]@{Name='Yubico Authenticator'; ID='Yubico.Authenticator'}
   [PSCustomObject]@{Name='Yubikey Manager'; ID='Yubico.YubikeyManager'}
   [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}

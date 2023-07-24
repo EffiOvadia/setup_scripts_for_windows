@@ -8,3 +8,6 @@ If ($Admin)
   {
   [System.Environment]::SetEnvironmentVariable('VAR',$DATA,[System.EnvironmentVariableTarget]::Machine)
   }
+
+#@ Display the stored value of "VAR"
+[System.Environment]::GetEnvironmentVariable('VAR')
