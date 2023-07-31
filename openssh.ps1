@@ -64,6 +64,6 @@ Set-Content "$env:ProgramData\ssh\administrators_authorized_keys" -Value $FileCo
 $ACL = Get-Acl "$env:ProgramData\ssh\administrators_authorized_keys"
 $ACL.SetSecurityDescriptorSddlForm('O:SYG:SYD:PAI(A;;FA;;;SY)(A;;FA;;;BA)') 
 $ACL | Set-Acl
-#@ Restart th e SSH Server
-Stop-Service -Name SSH-Agent
+#@ Restart the SSH Server
 Restart-Service -Name SSHd
+Stop-Service -Name SSH-Agent
