@@ -99,11 +99,11 @@ $Apps =
   [PSCustomObject]@{Name='YubiKey Personalization'; ID='Yubico.YubiKeyPersonalizationTool'}
   [PSCustomObject]@{Name='Yubico Authenticator'; ID='Yubico.Authenticator'}
   [PSCustomObject]@{Name='Yubikey Manager'; ID='Yubico.YubikeyManager'}
-  [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}
-  [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
+  #/ [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}
+  #/ [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
   [PSCustomObject]@{Name='FarManager'; ID='FarManager.FarManager'}
   #/ [PSCustomObject]@{Name='Keepass'; ID='DominikReichl.KeePass'}
-  [PSCustomObject]@{Name='VSCodium'; ID='VSCodium.VSCodium'}
+  #/ [PSCustomObject]@{Name='VSCodium'; ID='VSCodium.VSCodium'}
   [PSCustomObject]@{Name='Inkscape'; ID='9PD9BHGLFC7H'}
   [PSCustomObject]@{Name='Gimp'; ID='XPDM27W10192Q0'}
   [PSCustomObject]@{Name='VLC'; ID='XPDM1ZW6815MQM'}
