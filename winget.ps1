@@ -59,8 +59,8 @@ $Apps =
   [PSCustomObject]@{Name='Signal'; ID='OpenWhisperSystems.Signal'}
   [PSCustomObject]@{Name='Telegram'; ID='Telegram.TelegramDesktop'}
   #/ [PSCustomObject]@{Name='Facebook'; ID='FACEBOOK.FACEBOOK_8xx8rvfyw5nnt'}
-  #/ [PSCustomObject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
-  #/ [PSCustomObject]@{Name='WeChat'; ID='Tencent.WeChat'}
+  [PSCustomObject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
+  [PSCustomObject]@{Name='WeChat'; ID='Tencent.WeChat'}
   #/ [PSCustomObject]@{Name='LINE'; ID='LINE.LINE'}
   )
 
@@ -100,9 +100,9 @@ $Apps =
   [PSCustomObject]@{Name='Yubico Authenticator'; ID='Yubico.Authenticator'}
   [PSCustomObject]@{Name='Yubikey Manager'; ID='Yubico.YubikeyManager'}
   #/ [PSCustomObject]@{Name='AnyDesk'; ID='AnyDeskSoftwareGmbH.AnyDesk'}
-  #/ [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
+  [PSCustomObject]@{Name='KeepassXC'; ID='KeePassXCTeam.KeePassXC'}
   [PSCustomObject]@{Name='FarManager'; ID='FarManager.FarManager'}
-  #/ [PSCustomObject]@{Name='Keepass'; ID='DominikReichl.KeePass'}
+  [PSCustomObject]@{Name='Keepass'; ID='DominikReichl.KeePass'}
   #/ [PSCustomObject]@{Name='VSCodium'; ID='VSCodium.VSCodium'}
   [PSCustomObject]@{Name='Inkscape'; ID='9PD9BHGLFC7H'}
   [PSCustomObject]@{Name='Gimp'; ID='XPDM27W10192Q0'}
