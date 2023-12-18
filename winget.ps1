@@ -7,10 +7,13 @@ $Apps =
   @(
   [PSCustomObject]@{Name='PowerShell'; ID='Microsoft.PowerShell'}
   [PSCustomObject]@{Name='Windows Terminal'; ID='Microsoft.WindowsTerminal'}
+  #/  [PSCustomObject]@{Name='Midnight Commander'; ID='GNU.MidnightCommander'}
   [PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
   [PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
   [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
   [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
+  [PSCustomObject]@{Name='Wget2'; ID='GNU.Wget2'}
+  [PSCustomObject]@{Name='cURL'; ID='cURL.cURL'}
   [PSCustomObject]@{Name='VIM'; ID='vim.vim'}
   [PSCustomObject]@{Name='Git'; ID='Git.Git'}
   [PSCustomObject]@{Name='DotNet6'; ID='Microsoft.DotNet.DesktopRuntime.6'}
