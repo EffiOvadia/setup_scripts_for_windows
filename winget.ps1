@@ -78,16 +78,16 @@ $Apps =
   #/ [PSCustomObject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
   [PSCustomObject]@{Name='Clipchamp'; ID='Clipchamp.Clipchamp_yxz26nhyzhsrt'}
   [PSCustomObject]@{Name='Microsoft PowerToys'; ID='Microsoft.Powertoys'}
-  [PSCustomObject]@{Name='Samsung SmartSwitch'; ID='Samsung.SmartSwitch'}
+  #/ [PSCustomObject]@{Name='Samsung SmartSwitch'; ID='Samsung.SmartSwitch'}
   [PSCustomObject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
-  [PSCustomObject]@{Name='Samsung SmartView'; ID='Samsung.SmartView'}
+  #/ [PSCustomObject]@{Name='Samsung SmartView'; ID='Samsung.SmartView'}
   [PSCustomObject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
   [PSCustomObject]@{Name='IrfanView'; ID='IrfanSkiljan.IrfanView'}
   [PSCustomObject]@{Name='Teamviewer'; ID='TeamViewer.TeamViewe'}
   [PSCustomObject]@{Name='Adobe Brackets'; ID='Adobe.Brackets'}
   [PSCustomObject]@{Name='OneDrive'; ID='Microsoft.OneDrive'}
   [PSCustomObject]@{Name='Balena Etcher'; ID='Balena.Etcher'}
-  [PSCustomObject]@{Name='Goolge Drive'; ID='Google.Drive'}
+  [PSCustomObject]@{Name='Google Drive'; ID='Google.Drive'}
   [PSCustomObject]@{Name='Samsung DeX'; ID='Samsung.DeX'}
   [PSCustomObject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
   )
