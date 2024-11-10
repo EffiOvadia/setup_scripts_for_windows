@@ -1,7 +1,5 @@
 #@ Install Latest Microsoft Powershell
-$Apps = @( [PSCustomObject]@{Name='PowerShell'; ID='Microsoft.PowerShell'} )
-foreach ( $App in $Apps ) 
-  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
+winget install --accept-package-agreements --accept-source-agreements --exact --ID Microsoft.PowerShell
 #@ Add windows capability: OpenSSH Client & Server 
 If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
   { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
