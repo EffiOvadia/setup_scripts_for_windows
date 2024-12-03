@@ -86,3 +86,22 @@ Push-Location -path "HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration\"
 Pop-Location
 
 
+#@ Disable the Weather/News icon in the Taskbar
+Push-Location -path "HKLM:\SOFTWARE\Policies\Microsoft"
+  if ( -not(Test-Path ".\Dsh\") ) { New-Item -Path ".\Dsh\" }
+  Set-ItemProperty -Path ".\Dsh" AllowNewsAndInterests -Force -Value 0
+Pop-Location
+
+#@ Taskbar alignment
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\" TaskbarAl -Force -Value 1
+
+
+#@ Disable Network Throttling (default value is 10)
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\" NetworkThrottlingIndex -Force -Value 4294967295 
+
+
+#@ Disable Windows Copilot
+#Push-Location -path "HKCU:\Software\Policies\Microsoft\Windows\"
+#  if ( -not(Test-Path ".\WindowsCopilot\") ) { New-Item -Path ".\WindowsCopilot\" }
+#  Set-ItemProperty -Path ".\WindowsCopilot" TurnOffWindowsCopilot -Force -Value 1
+#Pop-Location
