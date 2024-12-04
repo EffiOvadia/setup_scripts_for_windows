@@ -75,7 +75,7 @@ $Apps =
   @(
   [PSCustomObject]@{Name='Microsoft Translator'; ID='Microsoft.BingTranslator_8wekyb3d8bbwe'}
   [PSCustomObject]@{Name='Adobe Acrobat Reader'; ID='Adobe.Acrobat.Reader.64-bit'}
-  #/ [PSCustomObject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
+  [PSCustomObject]@{Name='VMware Workstation Pro'; ID='VMware.WorkstationPro'}
   [PSCustomObject]@{Name='Clipchamp'; ID='Clipchamp.Clipchamp_yxz26nhyzhsrt'}
   [PSCustomObject]@{Name='Microsoft PowerToys'; ID='Microsoft.Powertoys'}
   #/ [PSCustomObject]@{Name='Samsung SmartSwitch'; ID='Samsung.SmartSwitch'}
