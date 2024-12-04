@@ -1,25 +1,27 @@
 #@ Install Latest Microsoft Powershell
-winget install --accept-package-agreements --accept-source-agreements --exact --ID Microsoft.PowerShell
+$Apps = @( [PSCustomObject]@{Name='PowerShell'; ID='Microsoft.PowerShell'} )
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 #@ Add windows capability: OpenSSH Client & Server 
-If ($(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed") 
-  {Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0}
-If ($(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed")
-  {Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0}
+If ( $(Get-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0).state -ne "Installed" ) 
+  { Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 }
+If ( $(Get-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0).state -ne "Installed" )
+  { Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 }
 #@ Set SSH server and SSH agent startup mode 
-if ($(Get-Service -Name SSHd) ) {Set-Service -Name SSHd -StartupType Automatic}
-if ($(Get-Service -Name SSH-Agent)) {Set-Service -Name SSH-Agent -StartupType Disable}
+if ( $(Get-Service -Name SSHd) ) { Set-Service -Name SSHd -StartupType Automatic }
+if ( $(Get-Service -Name SSH-Agent) ) { Set-Service -Name SSH-Agent -StartupType Disable }
 #@ Set Default shell for SSH server to PowerShell 
-if ($(Test-Path "$env:ProgramFiles\PowerShell\7\pwsh.exe"))
-  {$Shell = "$env:ProgramFiles\PowerShell\7\pwsh.exe"} else
-  {$Shell = "$env:windir\System32\WindowsPowerShell\v1.0\powershell.exe"}
-if ($(Test-Path HKLM:\SOFTWARE\OpenSSH)) 
+if ( $(Test-Path "$env:ProgramFiles\PowerShell\7\pwsh.exe") ) 
+  { $Shell = "$env:ProgramFiles\PowerShell\7\pwsh.exe" } else
+  { $Shell = "$env:windir\System32\WindowsPowerShell\v1.0\powershell.exe" }
+if ( $(Test-Path HKLM:\SOFTWARE\OpenSSH) ) 
   {
   $Path = "HKLM:\SOFTWARE\OpenSSH"
   New-ItemProperty $Path -Force -Name DefaultShell -Value "$Shell" -PropertyType String 
   New-ItemProperty $Path -Force -Name DefaultShellCommandOption -Value "/c" -PropertyType String
   }
 #@ Adding firewall rule if needed 
-If (!((Get-NetFirewallRule).Name -like "*SSH*")) 
+If ( !((Get-NetFirewallRule).Name -like "*SSH*") ) 
   {
   $FW_RuleParameters_SSH =
     @{  
