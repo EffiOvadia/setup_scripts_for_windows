@@ -6,18 +6,18 @@ If ($Admin)
   if ((Get-WmiObject -Class Win32_OperatingSystem).Caption -like "*Windows 11 Pro")
   {
     #@ Enable Windows Hyper-V feature 
-    if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V").state -ne "Enabled" ) 
-      { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Hyper-V" -All }
+    if (!(dism.exe /online /Get-FeatureInfo /FeatureName:Microsoft-Hyper-V | Select-String "State : Enabled")) 
+      {dism.exe /online /Enable-Feature /FeatureName:Microsoft-Hyper-V /All /NoRestart}
     #@ Enable Windows Sandbox feature 
-    if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Containers-DisposableClientVM").state -ne "Enabled" ) 
-      { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Containers-DisposableClientVM" -All }
+    if (!(dism.exe /online /Get-FeatureInfo /FeatureName:Containers-DisposableClientVM | Select-String "State : Enabled")) 
+      {dism.exe /online /Enable-Feature /FeatureName:Containers-DisposableClientVM /All /NoRestart}
   }
   
   #@ Enable Linux Subsystem feature
-  if ( $(Get-WindowsOptionalFeature -Online -FeatureName "VirtualMachinePlatform").state -ne "Enabled" ) 
-    { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "VirtualMachinePlatform" -All }
-  if ( $(Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux").state -ne "Enabled" ) 
-    { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All }
+  if (!(dism.exe /online /Get-FeatureInfo /FeatureName:VirtualMachinePlatform | Select-String "State : Enabled")) 
+    {dism.exe /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All /NoRestart}
+  if (!(dism.exe /online /Get-FeatureInfo /FeatureName:Microsoft-Windows-Subsystem-Linux | Select-String "State : Enabled")) 
+    {dism.exe /online /Enable-Feature /FeatureName:Microsoft-Windows-Subsystem-Linux /All /NoRestart}
   #@ set wsl default version to 2  
   wsl --set-default-version 2
   #@ update wsl subsystem
@@ -28,7 +28,7 @@ If ($Admin)
     [PSCustomObject]@{Name='Ubuntu'; ID='Ubuntu'}
     [PSCustomObject]@{Name='Debian GNU/Linux'; ID='Debian'}
     [PSCustomObject]@{Name='Kali Linux Rolling'; ID='kali-linux'}
-    [PSCustomObject]@{Name='Ubuntu 22.04 LTS'; ID='Ubuntu-22.04'}
+    [PSCustomObject]@{Name='Ubuntu 24.04 LTS'; ID='Ubuntu-24.04'}
     [PSCustomObject]@{Name='Oracle Linux 9.1'; ID='OracleLinux_9_1'}
     )
 
