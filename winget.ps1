@@ -10,7 +10,7 @@ $Apps =
   #/  [PSCustomObject]@{Name='Midnight Commander'; ID='GNU.MidnightCommander'}
   [PSCustomObject]@{Name='GitHub Desktop'; ID='GitHub.GitHubDesktop'}
   [PSCustomObject]@{Name='VSCode'; ID='Microsoft.VisualStudioCode'}
-  #/ [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
+  [PSCustomObject]@{Name='Python'; ID='Python.Python.3.11'}
   [PSCustomObject]@{Name='Cygwin'; ID='Cygwin.Cygwin'}
   [PSCustomObject]@{Name='Wget2'; ID='GNU.Wget2'}
   [PSCustomObject]@{Name='cURL'; ID='cURL.cURL'}
@@ -18,17 +18,17 @@ $Apps =
   [PSCustomObject]@{Name='Git'; ID='Git.Git'}
   [PSCustomObject]@{Name='DotNet6'; ID='Microsoft.DotNet.DesktopRuntime.6'}
   [PSCustomObject]@{Name='DotNet7'; ID='Microsoft.DotNet.DesktopRuntime.7'}
-  [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
+  #/  [PSCustomObject]@{Name='Wireshark'; ID='WiresharkFoundation.Wireshark'}
   #/  [PSCustomObject]@{Name='ProtonVPN'; ID='ProtonTechnologies.ProtonVPN'}
   #/  [PSCustomObject]@{Name='OpenVPN'; ID='OpenVPNTechnologies.OpenVPN'}
   #/  [PSCustomObject]@{Name='Cloudflare Warp'; ID='Cloudflare.Warp'}
   #/  [PSCustomObject]@{Name='WireGuard'; ID='WireGuard.WireGuard'}
-  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
-  [PSCustomObject]@{Name='Neovim'; ID='Neovim.Neovim'}
+  #/  [PSCustomObject]@{Name='VirtualBox'; ID='Oracle.VirtualBox'}
+  #/  [PSCustomObject]@{Name='Neovim'; ID='Neovim.Neovim'}
   )
 
-foreach ($App in $Apps) 
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ ----- Browsers & eMail Client -------------------------
 $Apps = 
@@ -47,8 +47,8 @@ $Apps =
   [PSCustomObject]@{Name='Thunderbird Mail Client'; ID='Mozilla.Thunderbird'}
   )
 
-foreach ($App in $Apps) 
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ ----- Communications ----------------------------------
 $Apps = 
@@ -61,14 +61,14 @@ $Apps =
   [PSCustomObject]@{Name='Zoom'; ID='Zoom.Zoom'}
   [PSCustomObject]@{Name='Signal'; ID='OpenWhisperSystems.Signal'}
   [PSCustomObject]@{Name='Telegram'; ID='Telegram.TelegramDesktop'}
-  [PSCustomObject]@{Name='Facebook'; ID='FACEBOOK.FACEBOOK_8xx8rvfyw5nnt'}
+  #/ [PSCustomObject]@{Name='Facebook'; ID='FACEBOOK.FACEBOOK_8xx8rvfyw5nnt'}
   [PSCustomObject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
   [PSCustomObject]@{Name='WeChat'; ID='Tencent.WeChat'}
-  [PSCustomObject]@{Name='LINE'; ID='LINE.LINE'}
+  #/ [PSCustomObject]@{Name='LINE'; ID='LINE.LINE'}
   )
 
-foreach ($App in $Apps)
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ ----- Productivity ------------------------------------
 $Apps = 
@@ -82,9 +82,9 @@ $Apps =
   [PSCustomObject]@{Name='Adobe DNG Converter'; ID='Adobe.DNGConverter'}
   #/ [PSCustomObject]@{Name='Samsung SmartView'; ID='Samsung.SmartView'}
   [PSCustomObject]@{Name='RDP'; ID='Microsoft.RemoteDesktopClient'}
-  #/  [PSCustomObject]@{Name='IrfanView'; ID='IrfanSkiljan.IrfanView'}
+  [PSCustomObject]@{Name='IrfanView'; ID='IrfanSkiljan.IrfanView'}
   [PSCustomObject]@{Name='Teamviewer'; ID='TeamViewer.TeamViewe'}
-  #/  [PSCustomObject]@{Name='Adobe Brackets'; ID='Adobe.Brackets'}
+  [PSCustomObject]@{Name='Adobe Brackets'; ID='Adobe.Brackets'}
   [PSCustomObject]@{Name='OneDrive'; ID='Microsoft.OneDrive'}
   [PSCustomObject]@{Name='Balena Etcher'; ID='Balena.Etcher'}
   [PSCustomObject]@{Name='Google Drive'; ID='Google.Drive'}
@@ -92,8 +92,8 @@ $Apps =
   [PSCustomObject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
   )
 
-foreach ($App in $Apps)
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ ----- Free Software -----------------------------------
 $Apps = 
@@ -107,17 +107,17 @@ $Apps =
   [PSCustomObject]@{Name='FarManager'; ID='FarManager.FarManager'}
   [PSCustomObject]@{Name='Keepass'; ID='DominikReichl.KeePass'}
   #/ [PSCustomObject]@{Name='VSCodium'; ID='VSCodium.VSCodium'}
-  #/  [PSCustomObject]@{Name='Inkscape'; ID='9PD9BHGLFC7H'}
-  #/  [PSCustomObject]@{Name='Gimp'; ID='XPDM27W10192Q0'}
+  [PSCustomObject]@{Name='Inkscape'; ID='9PD9BHGLFC7H'}
+  [PSCustomObject]@{Name='Gimp'; ID='XPDM27W10192Q0'}
   [PSCustomObject]@{Name='VLC'; ID='XPDM1ZW6815MQM'}
   [PSCustomObject]@{Name='7-Zip'; ID='7zip.7zip'}
-  #/  [PSCustomObject]@{Name='PuTTY'; ID='PuTTY.PuTTY'}
-  #/  [PSCustomObject]@{Name='WinSCP'; ID='WinSCP.WinSCP'}
+  [PSCustomObject]@{Name='PuTTY'; ID='PuTTY.PuTTY'}
+  [PSCustomObject]@{Name='WinSCP'; ID='WinSCP.WinSCP'}
   #/  [PSCustomObject]@{Name='qBittorrent'; ID='qBittorrent.qBittorrent'}
   )
 
-foreach ($App in $Apps)
-  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
+foreach ( $App in $Apps ) 
+  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
 #@ -------------------------------------------------------
 winget upgrade --all --include-unknown --silent --verbose

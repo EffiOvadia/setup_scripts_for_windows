@@ -28,7 +28,7 @@ Push-Location -path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion"
 Pop-Location
 #@ force Windows to use 100% of your network bandwidth
 Push-Location -path "HKLM:\SOFTWARE\Policies\Microsoft"
-  if (-not(Test-Path ".\Psched\")) {New-Item -Path ".\Psched\"}
+  if ( -not(Test-Path ".\Psched\") ) { New-Item -Path ".\Psched\" }
   Set-ItemProperty -Path ".\Psched" NonBestEffortLimit -Force -Value 0
 Pop-Location
 #@ Remove Windows Explorer folder from This Pc and improve appearance
@@ -52,8 +52,8 @@ Push-Location -path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer"
   #/ Hide Folder VIDEOS From This PC
   Set-ItemProperty -Path ".\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" ThisPCPolicy -Force -Value Hide
   #/ Hide 3D Objects from This PC
-  if (Test-Path ".\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}") 
-    {Remove-Item ".\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"}
+  if ( Test-Path ".\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" ) 
+  { Remove-Item ".\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" }
 Pop-Location
 #@ NumLock Initial status
 New-PSDrive -PSProvider Registry -Name HKU -Root HKEY_USERS
@@ -62,7 +62,7 @@ Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard\" InitialKeyboardIn
 Set-ItemProperty -Path "HKCU:\Control Panel\Keyboard" PrintScreenKeyForSnippingEnabled -Force -Value 1
 #@ Disbale Bing Search in Windows 11
 Push-Location -path "HKCU:\Software\Policies\Microsoft\Windows"
-  if (-not(Test-Path ".\Explorer\")) {New-Item -Path ".\Explorer\"}
+  if ( -not(Test-Path ".\Explorer\") ) { New-Item -Path ".\Explorer\" }
   Set-ItemProperty -Path ".\Explorer" DisableSearchBoxSuggestions -Force -Value 1
 Pop-Location
 #@ Set DELL brand in registry (for DELL laptops only)
@@ -84,3 +84,24 @@ Push-Location -path "HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration\"
   Set-ItemProperty -Path "." CDNBaseUrl    -Force -Value $URI
   Set-ItemProperty -Path "." UpdateChannel -Force -Value $URI
 Pop-Location
+
+
+#@ Disable the Weather/News icon in the Taskbar
+Push-Location -path "HKLM:\SOFTWARE\Policies\Microsoft"
+  if ( -not(Test-Path ".\Dsh\") ) { New-Item -Path ".\Dsh\" }
+  Set-ItemProperty -Path ".\Dsh" AllowNewsAndInterests -Force -Value 0
+Pop-Location
+
+#@ Taskbar alignment
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\" TaskbarAl -Force -Value 1
+
+
+#@ Disable Network Throttling (default value is 10)
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\" NetworkThrottlingIndex -Force -Value 4294967295 
+
+
+#@ Disable Windows Copilot
+#Push-Location -path "HKCU:\Software\Policies\Microsoft\Windows\"
+#  if ( -not(Test-Path ".\WindowsCopilot\") ) { New-Item -Path ".\WindowsCopilot\" }
+#  Set-ItemProperty -Path ".\WindowsCopilot" TurnOffWindowsCopilot -Force -Value 1
+#Pop-Location
