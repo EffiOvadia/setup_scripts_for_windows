@@ -26,10 +26,10 @@ If ($Admin)
   $Distros = 
     @(
     [PSCustomObject]@{Name='Ubuntu'; ID='Ubuntu'}
-    [PSCustomObject]@{Name='Debian GNU/Linux'; ID='Debian'}
-    [PSCustomObject]@{Name='Kali Linux Rolling'; ID='kali-linux'}
-    [PSCustomObject]@{Name='Ubuntu 24.04 LTS'; ID='Ubuntu-24.04'}
-    [PSCustomObject]@{Name='Oracle Linux 9.1'; ID='OracleLinux_9_1'}
+    #/ [PSCustomObject]@{Name='Debian GNU/Linux'; ID='Debian'}
+    #/ [PSCustomObject]@{Name='Kali Linux Rolling'; ID='kali-linux'}
+    #/ [PSCustomObject]@{Name='Ubuntu 24.04 LTS'; ID='Ubuntu-24.04'}
+    #/ [PSCustomObject]@{Name='Oracle Linux 9.1'; ID='OracleLinux_9_1'}
     )
 
   foreach ( $Dist in $Distros ) { wsl --install --no-launch -d $Dist.ID } 
