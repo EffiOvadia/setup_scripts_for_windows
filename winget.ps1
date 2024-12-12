@@ -27,9 +27,8 @@ $Apps =
   #/  [PSCustomObject]@{Name='Neovim'; ID='Neovim.Neovim'}
   )
 
-foreach ( $App in $Apps ) 
-  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
-
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 #@ ----- Browsers & eMail Client -------------------------
 $Apps = 
   @(
@@ -61,14 +60,14 @@ $Apps =
   [PSCustomObject]@{Name='Zoom'; ID='Zoom.Zoom'}
   [PSCustomObject]@{Name='Signal'; ID='OpenWhisperSystems.Signal'}
   [PSCustomObject]@{Name='Telegram'; ID='Telegram.TelegramDesktop'}
-  #/ [PSCustomObject]@{Name='Facebook'; ID='FACEBOOK.FACEBOOK_8xx8rvfyw5nnt'}
+  [PSCustomObject]@{Name='Facebook'; ID='FACEBOOK.FACEBOOK_8xx8rvfyw5nnt'}
   [PSCustomObject]@{Name='Twitter'; ID='9E2F88E3.TWITTER_wgeqdkkx372wm'}
   [PSCustomObject]@{Name='WeChat'; ID='Tencent.WeChat'}
-  #/ [PSCustomObject]@{Name='LINE'; ID='LINE.LINE'}
+  [PSCustomObject]@{Name='LINE'; ID='LINE.LINE'}
   )
 
-foreach ( $App in $Apps ) 
-  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
 #@ ----- Productivity ------------------------------------
 $Apps = 
@@ -92,9 +91,8 @@ $Apps =
   [PSCustomObject]@{Name='Dropbox'; ID='Dropbox.Dropbox'}
   )
 
-foreach ( $App in $Apps ) 
-  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
-
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 #@ ----- Free Software -----------------------------------
 $Apps = 
   @(
@@ -116,8 +114,7 @@ $Apps =
   #/  [PSCustomObject]@{Name='qBittorrent'; ID='qBittorrent.qBittorrent'}
   )
 
-foreach ( $App in $Apps ) 
-  { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
-
+foreach ($App in $Apps) 
+  {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 #@ -------------------------------------------------------
 winget upgrade --all --include-unknown --silent --verbose
