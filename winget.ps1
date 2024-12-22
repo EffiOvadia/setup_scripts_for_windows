@@ -2,7 +2,7 @@
 #! https://github.com/microsoft/winget-cli/releases/latest
 #! https://aka.ms/getwinget
 #! ms-windows-store://pdp/?ProductId=9NBLGGH4NNS1
-#@ ----- Development -------------------------------------
+## ----- Development -------------------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='PowerShell'; ID='Microsoft.PowerShell'}
@@ -29,7 +29,7 @@ $Apps =
 
 foreach ($App in $Apps) 
   {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-#@ ----- Browsers & eMail Client -------------------------
+## ----- Browsers & eMail Client -------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='Brave Browser'; ID='Brave.Brave'}
@@ -49,7 +49,7 @@ $Apps =
 foreach ( $App in $Apps ) 
   { winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID }
 
-#@ ----- Communications ----------------------------------
+## ----- Communications ----------------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='Skype'; ID='Microsoft.Skype'}
@@ -69,7 +69,7 @@ $Apps =
 foreach ($App in $Apps) 
   {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
 
-#@ ----- Productivity ------------------------------------
+## ----- Productivity ------------------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='Microsoft Translator'; ID='Microsoft.BingTranslator_8wekyb3d8bbwe'}
@@ -93,7 +93,7 @@ $Apps =
 
 foreach ($App in $Apps) 
   {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-#@ ----- Free Software -----------------------------------
+## ----- Free Software -----------------------------------
 $Apps = 
   @(
   [PSCustomObject]@{Name='LibreOffice'; ID='TheDocumentFoundation.LibreOffice'}
@@ -116,5 +116,5 @@ $Apps =
 
 foreach ($App in $Apps) 
   {winget install --accept-package-agreements --accept-source-agreements --exact --ID $App.ID}
-#@ -------------------------------------------------------
+## -------------------------------------------------------
 winget upgrade --all --include-unknown --silent --verbose
