@@ -99,6 +99,8 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 ## Disable Network Throttling (default value is 10)
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\" NetworkThrottlingIndex -Force -Value 4294967295 
 
+## Sniping tool 
+Set-ItemProperty -Path "HKCU:\Control Panel\Keyboard" PrintScreenKeyForSnippingEnabled -Force -Value 1
 
 ## Disable Windows Copilot
 #Push-Location -path "HKCU:\Software\Policies\Microsoft\Windows\"
